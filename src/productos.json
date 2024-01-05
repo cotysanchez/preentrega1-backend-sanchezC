@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Tommy Hilfiger",
+    "description": "Reloj Analogico Silver",
+    "price": 800,
+    "thumbnail": "sin imagen",
+    "code": "abc123",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "title": "Cadena Oro",
+    "description": "Cadena Oro 18k",
+    "price": 700,
+    "thumbnail": "sin imagen",
+    "code": "abc124",
+    "stock": 20
+  },
+  {
+    "id": 3,
+    "title": "Aviator RayBan",
+    "description": "Modelo Aviator P RayBan",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc125",
+    "stock": 30
+  },
+  {
+    "id": 4,
+    "title": "Pulsera Oro",
+    "description": "Modelo Esclava",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc126",
+    "stock": 30
+  },
+  {
+    "id": 5,
+    "title": "Anillo Oro",
+    "description": "Modelo Ring",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc127",
+    "stock": 10
+  },
+  {
+    "id": 6,
+    "title": "Dije Cruz",
+    "description": "Modelo Cruz",
+    "price": 500,
+    "thumbnail": "sin imagen",
+    "code": "abc128",
+    "stock": 15
+  },
+  {
+    "id": 7,
+    "title": "Reloj Mujer Tommy",
+    "description": "Modelo Rose Gold",
+    "price": 500,
+    "thumbnail": "sin imagen",
+    "code": "abc129",
+    "stock": 20
+  },
+  {
+    "id": 8,
+    "title": "Cadena Plata 925",
+    "description": "Modelo Eslabon Chato",
+    "price": 300,
+    "thumbnail": "sin imagen",
+    "code": "abc130",
+    "stock": 30
+  },
+  {
+    "id": 9,
+    "title": "Remera Ramones",
+    "description": "Modelo Ramones",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc131",
+    "stock": 40
+  },
+  {
+    "id": 10,
+    "title": "Jean Roto",
+    "description": "Modelo Crash",
+    "price": 200,
+    "thumbnail": "sin imagen",
+    "code": "abc132",
+    "stock": 30
+  },
+  {
+    "id": 11,
+    "title": "Zapatillas Nike",
+    "description": "Modelo Air Force1",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc133",
+    "stock": 25
+  },
+  {
+    "id": 12,
+    "title": "Zapatillas Vans ",
+    "description": "Modelo Urbana",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc134",
+    "stock": 20
+  },
+  {
+    "id": 13,
+    "title": "Campera",
+    "description": "Modelo Noche",
+    "price": 500,
+    "thumbnail": "sin imagen",
+    "code": "abc135",
+    "stock": 25
+  },
+  {
+    "id": 14,
+    "title": "Short Nike",
+    "description": "Modelo Short Corto",
+    "price": 200,
+    "thumbnail": "sin imagen",
+    "code": "abc136",
+    "stock": 20
+  },
+  {
+    "id": 15,
+    "title": "Cinto",
+    "description": "Modelo Cinto Negro",
+    "price": 80,
+    "thumbnail": "sin imagen",
+    "code": "abc137",
+    "stock": 30
+  },
+  {
+    "id": 16,
+    "title": "Riñonera",
+    "description": "Modelo Riñonera de cuero",
+    "price": 400,
+    "thumbnail": "sin imagen",
+    "code": "abc138",
+    "stock": 25
+  },
+  {
+    "id": 17,
+    "title": "Mochila",
+    "description": "Modelo Mochila",
+    "price": 200,
+    "thumbnail": "sin imagen",
+    "code": "abc139",
+    "stock": 15
+  },
+  {
+    "id": 18,
+    "title": "Cartera",
+    "description": "Cartera Cuero",
+    "price": 300,
+    "thumbnail": "sin imagen",
+    "code": "abc140",
+    "stock": 30
+  },
+  {
+    "id": 19,
+    "title": "Bolso Nike",
+    "description": "Modelo Bolso Deportivo",
+    "price": 200,
+    "thumbnail": "sin imagen",
+    "code": "abc141",
+    "stock": 35
+  },
+  {
+    "id": 20,
+    "title": "Gorra",
+    "description": "Modelo Gorra",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc142",
+    "stock": 30
+  }
+]
