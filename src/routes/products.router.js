@@ -1,0 +1,74 @@
+const express = require('express');
+const router = express.Router();
+
+const ProductManager = require('../controllers/product-manager.js');
+const productManager = new ProductManager('./src/models/productos.json');
+
+// Metodo GET - Obtener productos con límite
+router.get('/', async (req, res) => {
+  try {
+    const limit = req.query.limit;
+    const productos = await productManager.getProductsLimit(limit);
+    res.json({ products: productos });
+  } catch (error) {
+    console.log('Error al obtener productos:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+//Metodo GET - Obtener un producto por ID
+router.get('/:pid', async (req, res) => {
+  try {
+    const productId = parseInt(req.params.pid);
+    const producto = await productManager.getProductById(productId);
+    if (producto) {
+      res.json({ product: producto });
+    } else {
+      res.status(404).json({ error: 'Producto no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener producto por ID:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+//Metodo POST - Agregar un Nuevo Producto
+router.post('/', async (req, res) => {
+  try {
+    const nuevoProducto = req.body;
+    await productManager.addProduct(nuevoProducto);
+    res.status(201).json({ message: 'Producto agregado exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al agregar el producto' });
+  }
+});
+
+//Metodo PUT - Actualizar un producto por ID
+router.put('/:pid', async (req, res) => {
+  try {
+    const productId = parseInt(req.params.pid);
+    const productoActualizado = req.body;
+    await productManager.updateProduct(productId, productoActualizado);
+
+    res.json({ message: 'Producto Actualizado Exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al actualizar el producto' });
+  }
+});
+
+//Metodo DELETE - Eliminar un producto por ID
+router.delete('/:pid', async (req, res) => {
+  try {
+    const productId = parseInt(req.params.pid);
+    await productManager.deleteProduct(productId);
+
+    res.json({ message: 'Producto eliminado exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al eliminar el producto' });
+  }
+});
+
+module.exports = router;

@@ -178,5 +178,49 @@
     "thumbnail": "sin imagen",
     "code": "abc142",
     "stock": 30
+  },
+  {
+    "id": 21,
+    "title": "Remera Hombre ",
+    "description": " Remera Vulk",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc143",
+    "stock": 20,
+    "status": true,
+    "category": "Urbana"
+  },
+  {
+    "id": 22,
+    "title": "Vestido Largo ",
+    "description": " Remera Vulk",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc144",
+    "stock": 20,
+    "status": true,
+    "category": "Urbana"
+  },
+  {
+    "id": 23,
+    "title": "Camisa",
+    "description": " Camisa Blanca",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc145",
+    "stock": 25,
+    "status": true,
+    "category": "Noche"
+  },
+  {
+    "id": 24,
+    "title": "Camisa Leñadora",
+    "description": " A cuadros",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc146",
+    "stock": 25,
+    "status": true,
+    "category": "Día"
   }
 ]

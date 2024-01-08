@@ -1,17 +1,45 @@
 const fs = require('fs');
 
 class ProductManager {
-  static ultId = 0;
+  //static ultId = 0;
 
   constructor(path) {
     this.products = [];
     this.path = path;
+    this.loadProducts();
+  }
+
+  async loadProducts() {
+    try {
+      const data = await fs.readFileSync(this.path, 'utf-8');
+      this.products = JSON.parse(data);
+    } catch (error) {
+      console.error('Error al cargar productos:', error.message);
+    }
   }
 
   async addProduct(nuevoObjeto) {
-    let { title, description, price, thumbnail, code, stock } = nuevoObjeto;
+    let {
+      title,
+      description,
+      price,
+      thumbnail = [],
+      code,
+      stock,
+      status = true,
+      category,
+    } = nuevoObjeto;
 
-    if (!title || !description || !price || !thumbnail || !code || !stock) {
+    if (
+      !title ||
+      !description ||
+      !price ||
+      !thumbnail ||
+      !code ||
+      !stock ||
+      !status ||
+      !category
+    ) {
       console.log(' Todos los campos son Obligatorios');
       return;
     }
@@ -22,17 +50,28 @@ class ProductManager {
     }
 
     const newProduct = {
-      id: ++ProductManager.ultId,
+      //id: ++ProductManager.ultId,
+      id: this.getNextProductId(),
       title,
       description,
       price,
       thumbnail,
       code,
       stock,
+      status,
+      category,
     };
 
     this.products.push(newProduct);
     await this.guardarArchivo(this.products);
+  }
+
+  getNextProductId() {
+    const maxId = this.products.reduce(
+      (max, product) => (product.id > max ? product.id : max),
+      0
+    );
+    return maxId + 1;
   }
 
   getProducts() {
