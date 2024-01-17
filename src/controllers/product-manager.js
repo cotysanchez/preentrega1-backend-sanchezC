@@ -113,13 +113,42 @@ class ProductManager {
     }
   }
 
+
+
   async updateProduct(id, productoActualizado) {
     try {
       const arrayProductos = await this.leerArchivo();
       const index = arrayProductos.findIndex((item) => item.id === id);
 
       if (index !== -1) {
-        arrayProductos.splice(index, 1, productoActualizado);
+        const actualizacionProduct = {
+          id: arrayProductos[index].id,
+          title: productoActualizado.title
+            ? productoActualizado.title
+            : arrayProductos[index].title,
+          description: productoActualizado.description
+            ? productoActualizado.description
+            : arrayProductos[index].description,
+          price: productoActualizado.price
+            ? productoActualizado.price
+            : arrayProductos[index].price,
+          thumbnail: productoActualizado.thumbnail
+            ? productoActualizado.thumbnail
+            : arrayProductos[index].thumbnail,
+          code: productoActualizado.code
+            ? productoActualizado.code
+            : arrayProductos[index].code,
+          stock: productoActualizado.stock
+            ? productoActualizado.stock
+            : arrayProductos[index].stock,
+          status: productoActualizado.status
+            ? productoActualizado.status
+            : arrayProductos[index].status,
+          category: productoActualizado.category
+            ? productoActualizado.category
+            : arrayProductos[index].category,
+        };
+        arrayProductos[index] = actualizacionProduct;
         await this.guardarArchivo(arrayProductos);
       } else {
         console.log('No se encontro el producto');

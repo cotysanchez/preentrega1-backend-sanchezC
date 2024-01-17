@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(56, 55, 53);
+
+}
+
+
+.card {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  max-width: 300px; 
+  margin: 20px;
+  border: 1px solid #161515;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  box-sizing: border-box; 
+}
+
+/* Estilo para la imagen de la tarjeta */
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+button{
+    background-color: rgb(185, 22, 54);
+    border: 1px solid #161515;
+    border-radius: 7px;
+    height: 30px;
+    width: 80px;
+    
+}
+
+.productContainer{
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  padding: 2rem; 
+  margin: 20px;
+  border: 1px solid #161515;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  box-sizing: border-box; 
+}

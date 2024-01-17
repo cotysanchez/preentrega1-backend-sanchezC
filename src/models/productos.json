@@ -192,25 +192,14 @@
   },
   {
     "id": 22,
-    "title": "Vestido Largo ",
+    "title": "Nuevo",
     "description": " Remera Vulk",
-    "price": 100,
+    "price": 180,
     "thumbnail": "sin imagen",
     "code": "abc144",
     "stock": 20,
     "status": true,
     "category": "Urbana"
-  },
-  {
-    "id": 23,
-    "title": "Camisa",
-    "description": " Camisa Blanca",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "abc145",
-    "stock": 25,
-    "status": true,
-    "category": "Noche"
   },
   {
     "id": 24,
@@ -222,5 +211,27 @@
     "stock": 25,
     "status": true,
     "category": "Día"
+  },
+  {
+    "id": 25,
+    "title": "Vestido Largo ",
+    "description": "x",
+    "price": 100,
+    "thumbnail": "sin imagen",
+    "code": "abc147",
+    "stock": 20,
+    "status": true,
+    "category": "Urbana"
+  },
+  {
+    "id": 26,
+    "title": "Chalina",
+    "description": "xx",
+    "price": "123",
+    "thumbnail": [],
+    "code": "abc148",
+    "stock": "15",
+    "status": true,
+    "category": "Urbana"
   }
 ]
