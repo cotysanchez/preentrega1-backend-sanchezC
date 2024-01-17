@@ -4,19 +4,17 @@ const ProductManager = require('../controllers/product-manager.js');
 const productManager = new ProductManager('./src/models/productos.json');
 
 
-router.get('/', async (req, res) => {
+router.get('/home', async (req, res) => {
   try {
     
     const productos = await productManager.getProducts();
-    res.render('index', { products: productos });
+    res.render('home', { products: productos });
     
   } catch (error) {
     console.log('Error al obtener productos:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
-
-
 
 
 router.get('/realtimeproducts', async (req, res) => {

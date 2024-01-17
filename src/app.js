@@ -41,7 +41,6 @@ app.set("views", "src/views");
 
 
 
-
 const httpServer = app.listen(PORT,()=>{
   console.log(
     `Servidor Express escuchando en el puerto http://localhost:${PORT}`
@@ -57,13 +56,13 @@ io.on("connection", async (socket) =>{
 
   socket.on("eliminarProducto", async (id)=>{
     await productManager.deleteProduct(id);
-    io.sockets.emit("products", await productManager.getProducts());
+    io.sockets.emit("products", productManager.getProducts());
   });
 
-  // ojo ver si es product o producto??????
+  
   socket.on("agregarProducto", async (product)=>{
     await productManager.addProduct(product);
-    io.sockets.emit("products",await productManager.getProducts())
+    io.sockets.emit("products", await productManager.getProducts());
   });
 
 });

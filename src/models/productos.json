@@ -132,7 +132,9 @@
     "price": 80,
     "thumbnail": "sin imagen",
     "code": "abc137",
-    "stock": 30
+    "stock": 30,
+    "status": true,
+    "category": "Día"
   },
   {
     "id": 16,
@@ -141,7 +143,9 @@
     "price": 400,
     "thumbnail": "sin imagen",
     "code": "abc138",
-    "stock": 25
+    "stock": 25,
+    "status": true,
+    "category": "Urbana"
   },
   {
     "id": 17,
@@ -150,7 +154,9 @@
     "price": 200,
     "thumbnail": "sin imagen",
     "code": "abc139",
-    "stock": 15
+    "stock": 15,
+    "status": true,
+    "category": "Día"
   },
   {
     "id": 18,
@@ -159,7 +165,9 @@
     "price": 300,
     "thumbnail": "sin imagen",
     "code": "abc140",
-    "stock": 30
+    "stock": 30,
+    "status": true,
+    "category": "Noche"
   },
   {
     "id": 19,
@@ -168,7 +176,9 @@
     "price": 200,
     "thumbnail": "sin imagen",
     "code": "abc141",
-    "stock": 35
+    "stock": 35,
+    "status": true,
+    "category": "Deporte"
   },
   {
     "id": 20,
@@ -177,7 +187,9 @@
     "price": 100,
     "thumbnail": "sin imagen",
     "code": "abc142",
-    "stock": 30
+    "stock": 30,
+    "status": true,
+    "category": "Urbana"
   },
   {
     "id": 21,
@@ -211,27 +223,5 @@
     "stock": 25,
     "status": true,
     "category": "Día"
-  },
-  {
-    "id": 25,
-    "title": "Vestido Largo ",
-    "description": "x",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "abc147",
-    "stock": 20,
-    "status": true,
-    "category": "Urbana"
-  },
-  {
-    "id": 26,
-    "title": "Chalina",
-    "description": "xx",
-    "price": "123",
-    "thumbnail": [],
-    "code": "abc148",
-    "stock": "15",
-    "status": true,
-    "category": "Urbana"
   }
 ]
