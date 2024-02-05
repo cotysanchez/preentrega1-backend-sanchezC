@@ -1,10 +1,10 @@
 const socket = io();
 
 socket.on('products', (data) => {
-  renderProductos(data);
+  renderProducts(data);
 });
 
-const renderProductos= (products) => {
+const renderProducts= (products) => {
   const productContainer = document.getElementById('productContainer');
   productContainer.innerHTML = "";
 
@@ -24,20 +24,20 @@ const renderProductos= (products) => {
     productContainer.appendChild(card);
 
     card.querySelector("button").addEventListener("click", ()=> {
-       eliminarProducto(product.id);
+       deleteProduct(product.id);
     });  
 });
 } 
 
-const eliminarProducto = (id) =>{
-  socket.emit("eliminarProducto", id);
+const deleteProduct = (id) =>{
+  socket.emit("deleteProduct", id);
 }
 
 document.getElementById("btnEnviar").addEventListener("click", ()=>{
-  agregarProducto();
+  addProduct();
 });
 
-const agregarProducto =() =>{
+const addProduct =() =>{
   const product = {
     title: document.getElementById('title').value,
     description: document.getElementById('description').value,
@@ -49,7 +49,7 @@ const agregarProducto =() =>{
     status: document.getElementById('status').value === 'true',
   };
 
-  socket.emit("agregarProducto", product);
+  socket.emit("addProduct", product);
 }
 
 

@@ -193,35 +193,24 @@
   },
   {
     "id": 21,
-    "title": "Remera Hombre ",
-    "description": " Remera Vulk",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "abc143",
-    "stock": 20,
+    "title": "Chalina",
+    "description": "estampada",
+    "price": "110",
+    "thumbnail": "sin img",
+    "code": "abc152",
+    "stock": "12",
     "status": true,
     "category": "Urbana"
   },
   {
     "id": 22,
-    "title": "Nuevo",
-    "description": " Remera Vulk",
-    "price": 180,
+    "title": "Vestido Largo ",
+    "description": "xxx",
+    "price": 199,
     "thumbnail": "sin imagen",
-    "code": "abc144",
+    "code": "abc143",
     "stock": 20,
     "status": true,
     "category": "Urbana"
-  },
-  {
-    "id": 24,
-    "title": "Camisa Leñadora",
-    "description": " A cuadros",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "abc146",
-    "stock": 25,
-    "status": true,
-    "category": "Día"
   }
 ]
