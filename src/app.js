@@ -6,7 +6,6 @@ const cartsRouter = require('./routes/carts.router.js');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const viewsRouter = require('./routes/views.router.js');
-const homeRouter = require('./routes/views.router.js');
 const socket = require('socket.io');
 const MessageModel = require('./dao/models/message.model.js');
 require('./database.js');
@@ -32,8 +31,6 @@ app.use(express.json());
 
 //Routes
 app.use('/', viewsRouter);
-app.use('/realtimeproducts', viewsRouter);
-app.use("/home",homeRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
