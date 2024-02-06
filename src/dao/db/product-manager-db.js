@@ -60,14 +60,14 @@ class ProductManager {
     try {
       const product = await ProductModel.findById(id);
       if (!product) {
-        console.log('Producto no encontrado');
+        console.log('Producto no encontradooo', id);
         return null;
       }
 
-      console.log('Producto encontrado Exitosamente');
+      console.log('Producto encontrado Exitosamente', product);
       return product;
     } catch (error) {
-      console.log('Error al encontrar producto por ID ');
+      console.log('Error al encontrar producto por ID ', error);
     }
   }
 

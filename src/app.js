@@ -10,7 +10,6 @@ const socket = require('socket.io');
 const MessageModel = require('./dao/models/message.model.js');
 require('./database.js');
 
-
 // Handlebars
 const hbs = exphbs.create({
   runtimeOptions: {
@@ -34,12 +33,12 @@ app.use('/', viewsRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
+//Listen PORT
 const httpServer = app.listen(PORT, () => {
   console.log(
     `Servidor Express escuchando en el puerto http://localhost:${PORT}`
   );
 });
-
 
 const io = new socket.Server(httpServer);
 
@@ -51,13 +50,11 @@ io.on("connection", (socket) =>{
   socket.on('message', async data => {
     await MessageModel.create(data);
 
-
     //Obtengo los msj Mongo DB y se los paso al cliente:
     const messages = await MessageModel.find();
     console.log(messages);
     io.sockets.emit("message",messages);
   });
-
 
 });
 

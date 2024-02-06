@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+
 //Metodo GET - Obtener un producto por ID
 router.get('/:pid', async (req, res) => {
   const productId = req.params.pid;
@@ -31,14 +32,13 @@ router.get('/:pid', async (req, res) => {
     if (product) {
       res.json( product);
     } else {
-      res.status(404).json({ error: 'Producto no encontrado' });
+      res.status(404).json({ error: 'Producto no encontrado!!!!!!!!!!!' });
     }
   } catch (error) {
     console.error('Error al obtener producto por ID:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
-
 
 
 //Metodo POST - Agregar un Nuevo Producto
@@ -80,7 +80,6 @@ router.delete('/:pid', async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar el producto' });
   }
 });
-
 
 
 module.exports = router;
