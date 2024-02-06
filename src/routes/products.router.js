@@ -32,7 +32,7 @@ router.get('/:pid', async (req, res) => {
     if (product) {
       res.json( product);
     } else {
-      res.status(404).json({ error: 'Producto no encontrado!!!!!!!!!!!' });
+      res.status(404).json({ error: 'Producto no encontrado!' });
     }
   } catch (error) {
     console.error('Error al obtener producto por ID:', error);

@@ -29,6 +29,8 @@ router.get("/chat", async (req,res)=>{
   res.render("chat");
 })
 
+
+
 /*
 //GET - mostrar productos en /products
 router.get('/products', async (req, res) => {
@@ -55,7 +57,7 @@ router.get('/products', async (req, res) => {
 
 
 //POST - en /products
-router.post('/', async (req, res) => {
+router.post('/products', async (req, res) => {
   try {
     const product = new ProductModel(req.body);
     await product.save();
@@ -67,8 +69,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Error al cargar ,error' });
   }
 });
-
 */
-
 
 module.exports = router;
