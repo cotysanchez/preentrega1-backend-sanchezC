@@ -1,0 +1,12 @@
+<h2> Carrito de Compras</h2>
+
+{{#each products}}
+    <div class="card">
+      
+      <img src="https://placekitten.com/200/286" class="card-img-top" alt="{{this.title}}" />
+      <h3> {{this.product.title}}</h3>
+      <p>Cantidad: {{this.quantity}}</p>
+      
+    </div>
+  {{/each}}
+</div>

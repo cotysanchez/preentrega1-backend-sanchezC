@@ -7,18 +7,36 @@ const mongoose = require('mongoose');
 
 // Metodo GET - Obtener todos los prodcutos
 router.get('/', async (req, res) => {
-  const limit = req.query.limit;
+  
   try {
-    const products = await productManager.getProducts();
-    if (limit){
-      res.json(products.slice(0,limit));
-    }else{
-      res.json(products);
-    }
+    const {limit = 10, page = 1 , sort, query} =req.query;
+
+    const products = await productManager.getProducts({
+      limit:parseInt(limit),
+      page:parseInt(page),
+      sort,
+      query,
+    });
+    res.json({
+      status: 'success',
+      payload: products,
+      totalPages: products.totalPages,
+      prevPage: products.prevPage,
+      nextPage: products.nextPage,
+      page: products.page,
+      hasPrevPage: products.hasPrevPage,
+      hasNextPage: products.hasNextPage,
+      prevLink: products.hasPrevPage
+        ? `/api/products?limit=${limit}&page=${products.prevPage}&sort=${sort}&query=${query}`
+        : null,
+      nextLink: products.hasNextPage
+        ? `/api/products?limit=${limit}&page=${products.nextPage}&sort=${sort}&query=${query}`
+        : null,
+    });
     
   } catch (error) {
     console.log('Error al obtener productos:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    res.status(500).json({ status: "error", error: 'Error interno del servidor' });
   }
 });
 

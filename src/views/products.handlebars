@@ -11,9 +11,18 @@
       <p>Price: $ {{this.price}}</p>
       <p>Category: {{this.category}}</p>
 
-       <button> Comprar </button>
+       <button> Agregar al Carrito </button>
       
     </div>
   {{/each}}
 </div>
 
+{{#if hasNextPage}}
+    <a href="/products?page={{nextPage}}">Siguiente</a>
+{{/if}}
+
+{{#if hasPrevPage}}
+    <a href="/products?page={{prevPage}}">Anterior</a>
+{{/if}}
+
+<p>Pagina {{currentPage}} de {{totalPages}}</p>

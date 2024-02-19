@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
-const productsRouter = require('./routes/products.router.js');
-const cartsRouter = require('./routes/carts.router.js');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const productsRouter = require('./routes/products.router.js');
+const cartsRouter = require('./routes/carts.router.js');
 const viewsRouter = require('./routes/views.router.js');
 const socket = require('socket.io');
 const MessageModel = require('./dao/models/message.model.js');
+const ProductManager = require("./dao/db/product-manager-db.js");
+const productManager = new ProductManager("./src/models/product.model.js");
+
 require('./database.js');
 
 // Handlebars
@@ -18,7 +21,7 @@ const hbs = exphbs.create({
   },
 });
 
-// Motores de Plantilla - vistas
+// Motores de Plantilla Handlebars - vistas
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
@@ -43,8 +46,26 @@ const httpServer = app.listen(PORT, () => {
 const io = new socket.Server(httpServer);
 
 //configuramos el evento:  "connection"
-io.on("connection", (socket) =>{
+io.on("connection", async (socket) =>{
   console.log('Nuevo usuario Conectado');
+
+
+socket.emit('products', await productManager.getProducts());
+
+  socket.on('deleteProduct', async (id) => {
+    try {
+      await productManager.deleteProduct(id);
+      io.sockets.emit('products', await productManager.getProducts());
+    } catch (error) {
+      console.log("Error al eliminar el producto", error);
+    }
+    
+  });
+
+  socket.on('addProduct', async (product) => {
+    await productManager.addProduct(product);
+    io.sockets.emit('products', await productManager.getProducts());
+  });
 
   //Guardamos el Msj en Mongo DB
   socket.on('message', async data => {

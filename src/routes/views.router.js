@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const ProductManager = require("../dao/db/product-manager-db.js");
 const productManager = new ProductManager();
-const ProductModel = require("../dao/models/product.model.js");
+const CartManager = require("../dao/db/cart-manager-db.js");
+const cartManager = new CartManager();
 
 //GET - Mostrar Todos los Productos en "/home"
 router.get('/home', async (req, res) => {
@@ -15,7 +16,7 @@ router.get('/home', async (req, res) => {
   }
 });
 
-//GET - Mostrar productos en tiemp real en "/realtimeproducts"
+//GET - Mostrar productos en tiempo real en "/realtimeproducts"
 router.get('/realtimeproducts', async (req, res) => {
   try {
     res.render('realtimeproducts', { titulo: 'productos en tiempo real' });
@@ -30,45 +31,69 @@ router.get("/chat", async (req,res)=>{
 })
 
 
-
-/*
-//GET - mostrar productos en /products
+//GET - mostrar productos en /products 
 router.get('/products', async (req, res) => {
   try {
-    const products = await productManager.getProducts();
-    res.render('products', { products: products });
+    const {page = 1, limit= 10} = req.query;
+    const products = await productManager.getProducts({
+      page:parseInt(page),
+      limit: parseInt(limit)
+    });
+
+    if (!products.docs) {
+      console.log(
+        'Error: No se encontraron documentos en los productos obtenidos'
+      );
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
+    const newArray = products.docs.map(product =>{
+      const {_id, ...rest} = product.toObject();
+      return rest;
+    })
+
+    res.render('products', { 
+      products: newArray, 
+      hasPrevPage: products.hasPrevPage, 
+      hasNextPage: products.hasNextPage,
+      prevPage: products.prevPage,
+      nextPage: products.nextPage,
+      currentPage: products.page,
+      totalPages: products.totalPages,
+       });
+
   } catch (error) {
     console.log('Error al obtener productos:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    res.status(500).json({ status: "error", 
+    error: 'Error interno del servidor' });
   }
 });
 
-
-//GET - Obtener los productos en /products
-router.get('/products', async (req, res) => {
+//GET - mostrar en /carts/:cid los productos que pertenecen a dicho carrito
+router.get("/carts/:cid", async (req,res)=>{
+  const cartId= req.params.cid;
   try {
-    const products = await ProductModel.find().lean();
-    res.render('products', { products: products });
-    
+    const cart = await cartManager.getCartById(cartId);
+
+    if(!cart){
+      console.log(" No existe el carrito con este ID");
+      return res.status(404).json({error: "Carrito no encontrado"})
+    }
+
+    const productsInCart= cart.products.map(item =>({
+      product: item.product.toObject(),
+      quantity: item.quantity,
+    }));
+    res .render("carts",{products: productsInCart});
+
+
   } catch (error) {
-    res.status(500).json({ message: 'Error al cargar' });
+    console.error("Error al obtener el Carrito", error);
+    res.status(500).json ({error: "Error interno del Servidor"});
   }
+
 });
 
 
-//POST - en /products
-router.post('/products', async (req, res) => {
-  try {
-    const product = new ProductModel(req.body);
-    await product.save();
-    res.send({
-      resultado: 'Producto agregado exitosamente',
-      product: product,
-    });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al cargar ,error' });
-  }
-});
-*/
 
 module.exports = router;
