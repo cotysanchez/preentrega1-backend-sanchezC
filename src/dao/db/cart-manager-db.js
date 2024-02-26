@@ -32,7 +32,6 @@ class CartManager {
         throw new Error("el carrito no se encontrooo!!");
       }
       
-    
       const existProduct = cart.products.find(
         (item) => item.product.toString() === productId
       );

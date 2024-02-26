@@ -60,6 +60,7 @@ router.get('/products', async (req, res) => {
       nextPage: products.nextPage,
       currentPage: products.page,
       totalPages: products.totalPages,
+      user: req.session.user
        });
 
   } catch (error) {
@@ -94,6 +95,29 @@ router.get("/carts/:cid", async (req,res)=>{
 
 });
 
+//Login
+router.get("/login", (req,res) =>{
+  if (req.session.login){
+    return res.redirect("/products");
+  }
+  res.render("login");
+});
 
+
+// Registro
+router.get("/register", (req,res)=>{
+  if (req.session.login) {
+    return res.redirect("/profile");
+  }
+  res.render("register");
+});
+
+//Perfil
+router.get("/profile", (req,res)=>{
+  if(!req.session.login){
+    return res.redirect("/login");
+  }
+  res.render("profile", {user: req.session.user});
+});
 
 module.exports = router;

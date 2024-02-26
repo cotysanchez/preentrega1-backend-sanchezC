@@ -7,7 +7,7 @@ const CartModel= require("../dao/models/cart.model.js");
 //Metodo POST - Crear Carrito Nuevo
 router.post('/', async (req, res) => {
   try {
-    const newCart = cartManager.createCart();
+    const newCart = await cartManager.createCart();
     res.json(newCart);
   } catch (error) {
     console.error('Error al crear un Nuevo Carrito', error);

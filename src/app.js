@@ -10,6 +10,17 @@ const socket = require('socket.io');
 const MessageModel = require('./dao/models/message.model.js');
 const ProductManager = require("./dao/db/product-manager-db.js");
 const productManager = new ProductManager("./src/models/product.model.js");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const FileStore = require("session-file-store");
+const fileStore = FileStore(session);
+const MongoStore = require("connect-mongo");
+const userRouter = require("./routes/user.router.js");
+const sessionRouter = require("./routes/sessions.router.js");
+const passport = require("passport");
+const initializePassport= require("./config/passport.config.js");
+
+
 
 require('./database.js');
 
@@ -26,15 +37,34 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
+
 //Middleware
 app.use(express.static('./src/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+app.use(
+  session({
+    secret: 'secretCoder',
+    resave: true,
+    saveUninitilazed: true,
+    store: MongoStore.create({
+      mongoUrl:
+        'mongodb+srv://cotys21:coder1@cluster0.wv9khgm.mongodb.net/Ecommerce?retryWrites=true&w=majority', ttl:90
+    }),
+  })
+);
 
 //Routes
 app.use('/', viewsRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
+app.use("/api/users", userRouter);
+app.use("/api/sessions", sessionRouter);
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Listen PORT
 const httpServer = app.listen(PORT, () => {
@@ -79,3 +109,18 @@ socket.emit('products', await productManager.getProducts());
 
 });
 
+//Login
+app.get("/login", (req,res)=>{
+  let user = req.query.user;
+
+  req.session.user = user;
+  res.send("Guardamos el User por medio de Query");
+});
+
+//Usuario
+app.get ("/user",(req,res)=>{
+  if(req.session.user){
+    return res.send(`El usuario registrado es: ${req.session.user}`);
+  }
+  res.send("No tenemos un usuario registrado");
+});

@@ -5,6 +5,17 @@ body{
 
 h2{
   padding-left: 40px;
+  font-family: Arial, sans-serif;
+  
+}
+
+a{
+  color:#ff2176;
+  font-family: Arial, sans-serif;
+}
+
+p{
+  font-family: Arial, sans-serif;
 }
 
 .card {
@@ -52,7 +63,7 @@ button{
 
 .div-form {
   display: flex;
-  justify-content: center;
+  /*justify-content: center;*/
 }
 
 
@@ -98,4 +109,12 @@ button {
 
 button:hover {
   background-color: #e5fa26;
+}
+
+.navigate-button{
+  color: #ff2176;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+
 }

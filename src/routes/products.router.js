@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     });
     res.json({
       status: 'success',
-      payload: products,
+      payload: products.docs,
       totalPages: products.totalPages,
       prevPage: products.prevPage,
       nextPage: products.nextPage,

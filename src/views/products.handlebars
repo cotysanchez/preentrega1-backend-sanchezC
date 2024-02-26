@@ -1,10 +1,22 @@
-<h2> Products</h2>
+
+{{#if user}}
+<div class="card" style="background-color:#ff2176">
+  <h3>¡Bienvenido {{user.first_name}} {{user.last_name}}!</h3>
+  <p>Email: {{user.email}}</p>
+  <p>Edad: {{user.age}}</p>
+  <p>Rol: {{user.role}}</p>
+</div>
+
+{{/if}}
+<div  style="color:#00000">
+  <h2> Productos</h2>
+</div>
 
 <div id="product-container">
   
   {{#each products}}
     <div class="card">
-      <p>ID: {{this._id}}</p>
+      <!--<p>ID: {{this._id}}</p>-->
       <img src="https://placekitten.com/200/286" class="card-img-top" alt="{{this.title}}" />
       <h2> {{this.title}}</h2>
       <p>Description: {{this.description}}</p>
@@ -12,17 +24,17 @@
       <p>Category: {{this.category}}</p>
 
        <button> Agregar al Carrito </button>
-      
+     
     </div>
   {{/each}}
 </div>
 
 {{#if hasNextPage}}
-    <a href="/products?page={{nextPage}}">Siguiente</a>
+    <a href="/products?page={{nextPage}}" class="navigate-button" style="color:#00000">Siguiente</a>
 {{/if}}
 
 {{#if hasPrevPage}}
-    <a href="/products?page={{prevPage}}">Anterior</a>
+    <a href="/products?page={{prevPage}}" class="navigate-button"style="color:#00000" >Anterior</a>
 {{/if}}
 
 <p>Pagina {{currentPage}} de {{totalPages}}</p>
