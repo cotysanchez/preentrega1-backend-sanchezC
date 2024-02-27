@@ -1,44 +1,56 @@
- 
- <div style="margin-top: 2rem">
-    <h2>Registro</h2>
- </div>
-<div class='div-form' style="margin-top: 1rem; font-family: Arial, sans-serif">
-  <form action='/api/users' method='post'>
-
-    <label for='first_name'></label>
-    <input
-      type='text'
-      id='first_name'
-      name='first_name'
-      placeholder='Nombre'
-      required
-    />
-    <label for='last_name'> </label>
-    <input
-      type='text'
-      id='last_name'
-      name='last_name'
-      placeholder='Apellido'
-      required
-    />
-    <label for='email'></label>
-    <input type='email' id='email' name='email' placeholder='Email' required />
-    <label for='Password'></label>
-    <input
-      type='password'
-      id='password'
-      name='password'
-      placeholder='Contraseña'
-      required
-    />
-    <label for='Age'> </label>
-    <input type='number' id='age' name='age' placeholder='Edad' required />
-
-    <button type='submit'>Registrarme</button>
-
-  </form>
+<div>
+  <h2>Formulario de Registro</h2>
 </div>
-  <div class="text-center" style="margin-top: 20px; font-family: Arial, sans-serif;">
-    ¿Ya tienes una cuenta? <a href='/login'>Iniciar Sesión</a>
-  </div>
 
+<div class='login-container'>
+
+  <div class='login'>
+    <form class='login-form' action='/api/users' method='post'>
+
+      <label for='first_name'> </label>
+      <input
+        type='text'
+        id='first_name'
+        name='first_name'
+        placeholder='Nombre'
+        required
+      />
+      <label for='last_name'></label>
+      <input
+        type='text'
+        id='last_name'
+        name='last_name'
+        placeholder='Apellido'
+        required
+      />
+      <label for='email'> </label>
+      <input
+        type='email'
+        id='email'
+        name='email'
+        placeholder='Email'
+        required
+      />
+      <label for='Password'> </label>
+      <input
+        type='password'
+        id='password'
+        name='password'
+        placeholder='Contraseña'
+        required
+      />
+      <label for='Age'></label>
+      <input type='number' id='age' name='age' placeholder='Edad' required />
+
+      <button type='submit'>Registrarme</button>
+
+    </form>
+    <div>
+      <h3>
+        ¿Ya tienes una cuenta?
+        <a href='/login'>Iniciar Sesión</a>
+      </h3>
+    </div>
+
+  </div>
+</div>

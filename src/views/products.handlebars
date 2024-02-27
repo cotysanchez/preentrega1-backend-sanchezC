@@ -1,11 +1,11 @@
 {{>header}}
 {{#if user}}
-<div class="card" style="background-color:#ff2176">
+<div class="card" style="background-color: #ffffff">
   <h3>¡Bienvenido {{user.first_name}} {{user.last_name}}!</h3>
   <p>Email: {{user.email}}</p>
   <p>Rol: {{user.role}}</p>
 
-  <a href="/api/sessions/logout" style="color: #e5fa26;">Logout</a>
+  <a href="/api/sessions/logout" class="navigate-button" style="color: rgb(37, 34, 34); margin-left: 0.3px">Logout</a>
 </div>
 
 {{/if}}
@@ -18,8 +18,8 @@
   {{#each products}}
     <div class="card">
       <!--<p>ID: {{this._id}}</p>-->
-      <img src="https://placekitten.com/200/286" class="card-img-top" alt="{{this.title}}" />
-      <h2> {{this.title}}</h2>
+      <img src="https://res.cloudinary.com/dftcprmrq/image/upload/v1695049295/samples/ecommerce/shoes.png" class="card-img-top" alt="{{this.title}}" />
+      <h3> {{this.title}}</h3>
       <p>Description: {{this.description}}</p>
       <p>Price: $ {{this.price}}</p>
       <p>Category: {{this.category}}</p>
@@ -31,11 +31,13 @@
 </div>
 
 {{#if hasNextPage}}
+
     <a href="/products?page={{nextPage}}" class="navigate-button" style="color:#00000">Siguiente</a>
 {{/if}}
 
 {{#if hasPrevPage}}
+
     <a href="/products?page={{prevPage}}" class="navigate-button"style="color:#00000" >Anterior</a>
 {{/if}}
 
-<p>Pagina {{currentPage}} de {{totalPages}}</p>
+<p style="margin-top: 25px; margin-button: 40px; margin-left: 20px">Pagina {{currentPage}} de {{totalPages}}   </p>

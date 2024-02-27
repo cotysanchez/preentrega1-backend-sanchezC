@@ -1,20 +1,31 @@
-body{
-    background-color:rgb(56, 55, 53) ;
-
+body {
+  /*background-color:rgb(56, 55, 53) ;*/
+  /*background: repeating-radial-gradient(#3cf655, #3f87a6 50px);*/
+  background-size: cover;
+  background-attachment: fixed;
+  background: linear-gradient(#241f1a, #6b6f70);
+  /*in-height: 100vh;*/
+  background-repeat: no-repeat;
 }
 
-h2{
-  padding-left: 40px;
+
+h2 {
+  color: rgb(230, 230, 238);
+  background-color: rgb(24, 22, 22);
+  text-align: center;
+  border-radius: 4px;
+  padding: 1rem;
   font-family: Arial, sans-serif;
-  
+
 }
 
-a{
-  color:#ff2176;
+a {
+  color: #ff2176;
   font-family: Arial, sans-serif;
 }
 
-p{
+p {
+  font-size: small;
   font-family: Arial, sans-serif;
 }
 
@@ -23,25 +34,23 @@ p{
   display: inline-block;
   font-family: Arial, sans-serif;
   padding: 2rem;
-  max-width: 300px; 
+  max-width: 300px;
   margin: 20px;
-  border: 1px solid #161515;
+  border: 0.1px solid #161515;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
-
 
 .card img {
   width: 100%;
   height: auto;
 }
 
-button{
+button {
   background-color: #ff2176;
 }
-
 
 /* Estilos adicionales al pasar el mouse sobre la tarjeta (opcional) */
 .card:hover {
@@ -64,9 +73,8 @@ button{
 
 .div-form {
   display: flex;
-  /*justify-content: center;*/
+  justify-content: center;
 }
-
 
 form {
   max-width: 300px;
@@ -92,7 +100,7 @@ button {
   padding: 8px;
   box-sizing: border-box;
 }
-
+/*
 .padding-button {
   padding: 1rem;
 }
@@ -100,6 +108,7 @@ button {
 .color-button {
   background-color: #161515;
 }
+*/
 button {
   background-color: #ff2176;
   color: rgb(37, 34, 34);
@@ -112,26 +121,34 @@ button:hover {
   background-color: #e5fa26;
 }
 
-.navigate-button{
-  color: #ff2176;
+.navigate-button {
+  
   text-decoration: none;
   font-family: Arial, sans-serif;
-  padding: 1rem;
-
+  font-size: small;
+  padding: 10px;
+  background-color: #e5fa26;
+  color: rgb(37, 34, 34);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  
 }
-
-
 
 header {
   background-color: #161515;
   color: #fff;
   padding: 15px 20px;
   display: flex;
+  border-radius: 5px;
   justify-content: space-between;
   align-items: center;
 }
-
-
 
 nav ul {
   list-style: none;
@@ -144,7 +161,7 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  color:#ff2176 ;
+  color: #ff2176;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -180,9 +197,76 @@ nav a:hover {
 
   /* Icono del menú desplegable */
   header:before {
-    content: "\2630"; /* Código del carácter Unicode para el icono del menú */
+    content: '\2630'; /* Código del carácter Unicode para el icono del menú */
     font-size: 25px;
     cursor: pointer;
     display: none;
   }
 }
+
+.register-container {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; */
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+/* Style register*/
+.login-container {
+  padding: 2rem;
+  justify-content: center;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; */
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login-form input[type='text'],
+.login-form input[type='number'],
+.login-form input[type='email'],
+.login-form input[type='password'] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-form button[type='submit'] {
+  background-color: #ff2176;
+  color: #1d1b1b;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+.login-form button[type='submit']:hover {
+  background-color: #e5fa26;
+}
+.login {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+.login h3 {
+  color: #1a1818;
+  font-size: medium;
+  font-family: Arial, sans-serif;
+}
+
+.login a {
+  color:#ff2176 ;
+  font-size: medium;
+  
+}
+
+
