@@ -19,6 +19,7 @@ p{
 }
 
 .card {
+  background-color: #ffffff;
   display: inline-block;
   font-family: Arial, sans-serif;
   padding: 2rem;
