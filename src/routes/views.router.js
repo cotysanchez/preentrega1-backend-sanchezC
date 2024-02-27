@@ -6,10 +6,13 @@ const CartManager = require("../dao/db/cart-manager-db.js");
 const cartManager = new CartManager();
 
 //GET - Mostrar Todos los Productos en "/home"
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const productos = await productManager.getProducts();
-    res.render('home', { products: productos });
+    res.render('login', { products: productos });
+    if (!req.session.login) {
+      return res.redirect('/login');
+    }
   } catch (error) {
     console.log('Error al obtener productos:', error);
     res.status(500).json({ error: 'Error interno del servidor' });

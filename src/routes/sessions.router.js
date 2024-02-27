@@ -29,7 +29,6 @@ router.post("/login", passport.authenticate( "login", {failureRedirect:"api/sess
     req.session.login=true;
     res.redirect("/products");
    
-   
 });
 
 //Logout - GET
