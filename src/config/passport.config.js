@@ -9,7 +9,7 @@ const initializePassport= ()=>{
     passport.use("register", new LocalStrategy({
         passReqToCallback:true,
         usernameField: "email"
-    }, async (req, username,password,done)=>{
+    }, async (req, username ,password,done)=>{
         const {first_name, last_name,email,age}= req.body;
         try {
             const userExist = await UserModel.findOne({email});

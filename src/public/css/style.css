@@ -118,3 +118,70 @@ button:hover {
   padding: 1rem;
 
 }
+
+
+
+header {
+  background-color: #161515;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color:#ff2176 ;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #e5fa26; /* Cambia el color al pasar el ratón sobre el enlace */
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  nav {
+    display: none; /* Oculta la barra de navegación en pantallas más pequeñas */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+  }
+
+  nav.show {
+    display: flex; /* Muestra la barra de navegación cuando se hace clic en el icono del menú */
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  /* Icono del menú desplegable */
+  header:before {
+    content: "\2630"; /* Código del carácter Unicode para el icono del menú */
+    font-size: 25px;
+    cursor: pointer;
+    display: none;
+  }
+}
