@@ -4,10 +4,10 @@ const UserModel= require ("../dao/models/user.model.js");
 const {isValidPassword} = require("../utils/hashBcrypt.js");
 const passport =require ("passport");
 
+//POST - Login con Passport
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
-  
   if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
     
     req.session.user = {
@@ -16,6 +16,7 @@ router.post('/login', async (req, res) => {
       email: email,
       role: 'admin',
     };
+    
     req.session.login = true;
     return res.redirect('/products'); 
   } else {
@@ -23,22 +24,18 @@ router.post('/login', async (req, res) => {
     const user = await UserModel.findOne({ email: email });
 
     if (!user) {
-      
       return res
         .status(400)
         .send({ status: 'error', message: 'Usuario no encontrado' });
     }
 
-   
     const isValid = await isValidPassword(password, user);
     if (!isValid) {
-      
       return res
         .status(400)
         .send({ status: 'error', message: 'Credenciales Inválidas' });
     }
 
-   
     req.session.user = {
       first_name: user.first_name,
       last_name: user.last_name,
@@ -53,35 +50,21 @@ router.post('/login', async (req, res) => {
 
 
 
-/*
-//Login - POST
-router.post("/login", passport.authenticate( "login", {failureRedirect:"api/sessions/faillogin"}), async (req,res)=>{
-    if (!req.user) return res.status(400).send ({status: "error", message:"Credenciales Invalidas"});
-    if (req.user.email=== "adminCoder@coder.com"){
-        req.session.user = {
-            first_name: req.user.first_name,
-            last_name: req.user.last_name,
-            email: req.user.email,
-            age: req.user.age,
-            role: "admin"
-        };
-
-    }else{
-        req.session.user = {
-          first_name: req.user.first_name,
-          last_name: req.user.last_name,
-          email: req.user.email,
-          age: req.user.age,
-          role: req.user.role
-        };
-    }
-    req.session.login=true;
+// GET - Para GitHub : 
+router.get("/github", passport.authenticate("github", {scope: ["user:email"]}), async (req, res) => {})
+router.get("/githubcallback", passport.authenticate("github", {failureRedirect: "/login"}), async (req, res) => {
+    //La estrategía de github nos retornará el usuario, entonces lo agregamos a nuestro objeto de session. 
+    req.session.user = req.user; 
+    req.session.login = true; 
     res.redirect("/products");
-   
-});
-*/
+})
 
-//Logout - GET
+
+/*Version con JWT */
+
+
+
+//GET - Logout 
 router.get("/logout", (req,res)=>{
     try {
         if(req.session.login){

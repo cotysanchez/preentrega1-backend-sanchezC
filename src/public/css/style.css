@@ -8,7 +8,6 @@ body {
   background-repeat: no-repeat;
 }
 
-
 h2 {
   color: rgb(230, 230, 238);
   background-color: rgb(24, 22, 22);
@@ -16,7 +15,6 @@ h2 {
   border-radius: 4px;
   padding: 1rem;
   font-family: Arial, sans-serif;
-
 }
 
 a {
@@ -48,11 +46,7 @@ p {
   height: auto;
 }
 
-button {
-  background-color: #ff2176;
-}
-
-/* Estilos adicionales al pasar el mouse sobre la tarjeta (opcional) */
+/* Estilos adicionales al pasar el mouse sobre la tarjeta  */
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -69,7 +63,7 @@ button {
   }
 }
 
-/* formulario */
+/* FORM */
 
 .div-form {
   display: flex;
@@ -100,15 +94,7 @@ button {
   padding: 8px;
   box-sizing: border-box;
 }
-/*
-.padding-button {
-  padding: 1rem;
-}
 
-.color-button {
-  background-color: #161515;
-}
-*/
 button {
   background-color: #ff2176;
   color: rgb(37, 34, 34);
@@ -121,8 +107,8 @@ button:hover {
   background-color: #e5fa26;
 }
 
+/* NAVIGATE BUTTONS - ANTERIOR/SIGUIENTE */
 .navigate-button {
-  
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: small;
@@ -137,9 +123,9 @@ button:hover {
   padding-top: 5px;
   padding-bottom: 5px;
   box-sizing: border-box;
-  
 }
 
+/* NAV */
 header {
   background-color: #161515;
   color: #fff;
@@ -215,8 +201,7 @@ nav a:hover {
   margin: 0 auto;
 }
 
-
-/* Style register*/
+/* lOGIN */
 .login-container {
   padding: 2rem;
   justify-content: center;
@@ -252,6 +237,7 @@ nav a:hover {
 .login-form button[type='submit']:hover {
   background-color: #e5fa26;
 }
+
 .login {
   display: grid;
   justify-content: center;
@@ -263,10 +249,69 @@ nav a:hover {
   font-family: Arial, sans-serif;
 }
 
-.login a {
-  color:#ff2176 ;
+.login-register-button a {
+  color: #ff2176;
   font-size: medium;
-  
 }
 
 
+/* LOGIN BOTON GITHUB */
+.login-github button {
+  background-color:#e5fa26 ;
+  color: #1d1b1b;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font: 13px;
+}
+
+.login-github button [type='submit']:hover {
+  background-color: #ff2176; 
+}
+
+.login-github a {
+  text-decoration: none;
+  color: #1d1b1b;
+}
+
+/* PROFILE */
+.profile-container{
+  padding: 2rem;
+  justify-content: center;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; */
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.profile {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+
+
+.logout-profile-button button{
+  background-color:#e5fa26;
+  color: #1d1b1b;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+.logout-profile-button button [type='submit']:hover {
+  background-color: #ff2176;
+  
+}
+
+.logout-profile-button a {
+  text-decoration: none;
+  color: #1d1b1b;
+}

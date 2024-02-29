@@ -5,7 +5,7 @@ const productManager = new ProductManager();
 const CartManager = require("../dao/db/cart-manager-db.js");
 const cartManager = new CartManager();
 
-//GET - Mostrar Todos los Productos en "/home"
+//GET - Mostrar Todos los Productos en "/" - Incio en Login
 router.get('/', async (req, res) => {
   try {
     const productos = await productManager.getProducts();
@@ -98,6 +98,7 @@ router.get("/carts/:cid", async (req,res)=>{
 
 });
 
+
 //Login
 router.get("/login", (req,res) =>{
   if (req.session.login){
@@ -105,7 +106,6 @@ router.get("/login", (req,res) =>{
   }
   res.render("login");
 });
-
 
 // Registro
 router.get("/register", (req,res)=>{

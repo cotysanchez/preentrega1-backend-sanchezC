@@ -1,5 +1,19 @@
+{{>header}}
+
 <h2>Mi Perfil</h2>
-<p>Bienvenido!, {{user.first_name}} {{user.last_name}}!</p>
-<p>Email: {{user.email}}</p>
-<p>Edad: {{user.age}}</p>
-<a href="/api/sessions/logout">Logout</a>
+<div class="profile-container">
+    <div class="profile">
+        <div class="card">
+
+            <h3>Bienvenido! {{user.first_name}} {{user.last_name}}!</h3>
+            <p>Email: {{user.email}}</p>
+            <!--<p>Edad: {{user.age}}</p>-->
+        </div>
+
+        <div>
+            <button class="logout-profile-button">
+                <a href="/api/sessions/logout" >Logout</a>
+            </button>
+        </div>
+    </div>
+</div>

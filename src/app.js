@@ -50,7 +50,7 @@ app.use(
     saveUninitilazed: true,
     store: MongoStore.create({
       mongoUrl:
-        'mongodb+srv://cotys21:coder1@cluster0.wv9khgm.mongodb.net/Ecommerce?retryWrites=true&w=majority', ttl:90
+        'mongodb+srv://cotys21:coder1@cluster0.wv9khgm.mongodb.net/Ecommerce?retryWrites=true&w=majority', ttl:190
     }),
   })
 );
