@@ -48,8 +48,6 @@ router.post('/login', async (req, res) => {
 });
 
 
-
-
 // GET - Para GitHub : 
 router.get("/github", passport.authenticate("github", {scope: ["user:email"]}), async (req, res) => {})
 router.get("/githubcallback", passport.authenticate("github", {failureRedirect: "/login"}), async (req, res) => {
@@ -59,10 +57,7 @@ router.get("/githubcallback", passport.authenticate("github", {failureRedirect: 
     res.redirect("/products");
 })
 
-
 /*Version con JWT */
-
-
 
 //GET - Logout 
 router.get("/logout", (req,res)=>{
