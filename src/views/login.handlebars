@@ -1,5 +1,5 @@
 
-
+<!--
 <h2>Login</h2>
 <div class="login-container"></div>
     <div class=" login">
@@ -25,3 +25,171 @@
         </div>
     </div>
 </div>
+-->
+
+
+<div>
+    <h2 >Login</h2>
+</div>
+
+<div class="container">
+  <div class="content">
+    <div
+      id="login"
+      class="d-flex justify-content-center align-items-center flex-column position-relative">
+
+      
+        <span class="social-login-block w-100">
+          <div
+            class="d-flex justify-content-center align-items-center w-100 mb-25"
+          >
+            <a
+              title="Log in with Google"
+              class="p-12-24 m-lr-10 b-radius-4 gray-border social"
+              data-qa="google-login-button"
+            >
+              <img
+                src="https://auth.hostinger.com/assets/images/oauth/google.svg"
+                alt="Google"
+              />
+            </a>
+            <a
+              title="Log in with Facebook"
+              class="p-12-24 m-lr-10 b-radius-4 gray-border social facebook"
+              data-qa="facebook-login-button"
+            >
+              <img
+                src="https://auth.hostinger.com/assets/images/oauth/facebook.svg"
+                alt="Facebook"
+              />
+            </a>
+            <a
+              href="/api/sessions/github"
+              title="Log in with Github"
+              class="p-12-24 m-lr-10 b-radius-4 gray-border social github"
+              data-qa="github-login-button"
+            >
+              <img
+                src="https://auth.hostinger.com/assets/images/oauth/github.svg"
+                alt="Github"
+              />
+            </a>
+          </div>
+          <div class="or-wrapper mb-12 position-relative">
+            <hr />
+            <p>or</p>
+          </div>
+        </span>
+        <form
+          action="/api/sessions/login"
+          method="POST"
+          autocomplete="on"
+          class="d-flex justify-content-center align-items-center flex-column w-100"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="pvaSkNnRsm5Onefy6KgTLxCCkNLtFvvdM83mgxlU"
+            autocomplete="off"
+          />
+          <div class="mb-25 w-100">
+            <input
+              id="email-input"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              value=""
+              name="email"
+              type="email"
+              autocomplete="email"
+              class="input color-black"
+              placeholder="Email"
+              required=""
+            />
+          </div>
+          <div class="mb-25 w-100 text-left position-relative">
+            <input
+              id="password-input"
+              name="password"
+              type="password"
+              class="input color-black"
+              placeholder="Password"
+              required=""
+            />
+            <div
+              id="show-password-button"
+              class="position-absolute show-password-eye"
+            >
+              <svg
+                style="fill: #727586"
+                id="eye-icon"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="m12 4.5c-5 0-9.27 3.11-11 7.5 1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="mb-25 w-100 primary-action background-color-hostinger"
+            data-qa="login-button"
+          >Login</button>
+          <a
+            {{! href="/forgot_password/" }}
+            class="mb-25 secondary-action color-hostinger"
+            data-qa="forgot-password-link"
+          >Olvidaste tu Contraseña</a>
+          <input
+            type="hidden"
+            name="_ga"
+            value="GA1.2.416417108.1696530634"
+          /></form>
+        <p class="not-a-member text-center">No eres miembro aun?
+          <a
+            class="color-hostinger text-decoration-none"
+            href="/register"
+            data-qa="choose-hosting-plan-link"
+          >Registrate</a>
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', () => { 
+      const emailInputElement = document.getElementById('email'); 
+      const passwordInputElement = document.getElementById('password'); 
+      const errorDiv = document.getElementById('error-div'); 
+      const showPasswordButton = document.getElementById('show-password-button');
+      const eyeIcon = document.getElementById('eye-icon');
+
+    emailInputElement.addEventListener('input', hideErrorDiv);
+    passwordInputElement.addEventListener('input', hideErrorDiv);
+    showPasswordButton.addEventListener('click', togglePasswordVisibility);
+
+    function togglePasswordVisibility() { 
+      if (passwordInputElement.type ==='password') { 
+        passwordInputElement.type = 'text'; 
+        eyeIcon.style.fill = '#673DE6'; // Cambiar color del ícono cuando se muestra la contraseña 
+        } else{ 
+          passwordInputElement.type = 'password'; 
+    eyeIcon.style.fill = '#727586'; //Cambiar color del ícono cuando se oculta la contraseña 
+    } } 
+    function hideErrorDiv() { 
+      if (!errorDiv) { return; } errorDiv.style.display = 'none';
+    } 
+    function handleFieldsFocus() { 
+      if (emailInputElement.value === "") {
+    emailInputElement.focus(); 
+    return; } 
+    
+    passwordInputElement.focus(); }
+    handleFieldsFocus(); });
+  </script>
+  -->

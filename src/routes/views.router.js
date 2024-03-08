@@ -8,10 +8,13 @@ const cartManager = new CartManager();
 //GET - Mostrar Todos los Productos en "/" - Incio en Login
 router.get('/', async (req, res) => {
   try {
-    const productos = await productManager.getProducts();
-    res.render('login', { products: productos });
+  
     if (!req.session.login) {
       return res.redirect('/login');
+    }else{
+      const productos = await productManager.getProducts();
+      res.render('login', { products: productos });
+
     }
   } catch (error) {
     console.log('Error al obtener productos:', error);
