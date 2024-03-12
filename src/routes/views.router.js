@@ -119,6 +119,7 @@ router.get("/register", (req,res)=>{
 });
 
 //Perfil
+
 router.get("/profile", (req,res)=>{
   if(!req.session.login){
     return res.redirect("/login");

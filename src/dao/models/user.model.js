@@ -2,33 +2,22 @@ const mongoose = require('mongoose');
 
 //Creamos el esquema del Usuario
 const userSchema = mongoose.Schema({
-  first_name: {
+  first_name: String,
+    last_name: String,
+
+    email: {
     type: String,
-    required: true,
-  },
-  last_name: {
-    type: String,
-    //required: true,
-  },
-  email: {
-    type: String,
-    //required: true,
-    index: true,
     unique: true,
-  },
-  password: {
+    },
+    
+    password: String,
+    age:  Number,
+
+    role: {
     type: String,
-    //required: true,
-  },
-  age: {
-    type: Number,
-    //required: true,
-  },
-  role: {
-    type: String,
-    //required: true
-  },
+    default: "user"
+    }
 });
 
-const UserModel = mongoose.model('users', userSchema);
+const UserModel = mongoose.model('user', userSchema);
 module.exports = UserModel;

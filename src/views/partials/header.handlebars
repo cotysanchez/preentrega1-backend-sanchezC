@@ -4,12 +4,16 @@
   <nav>
     
     <ul>
-      
-      <li><a href="/products">Products</a></li>
-      <li><a href="/realtimeproducts">Real Time Products</a></li>
-      <li><a href="/chat">Chat</a></li>
-      <!--<li><a href="/login">Login</a></li>-->
-
+      {{#if user}}
+        <li><a href="/profile">Hola {{user.first_name}}</a></li>
+        <!--<li><a href="/logout">Cerrar Sesión</a></li> -->
+      {{else}}
+        <li><a href="/login">Iniciar Sesión</a></li>
+        <li><a href="/register">Registrarme</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/realtimeproducts">Real Time Products</a></li>
+        <li><a href="/chat">Chat</a></li>
+      {{/if}}
     </ul>
   </nav>
 </header>
