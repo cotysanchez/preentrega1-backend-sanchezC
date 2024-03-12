@@ -13,6 +13,8 @@ const userSchema = mongoose.Schema({
     password: String,
     age:  Number,
 
+    cartId: String,
+      
     role: {
     type: String,
     default: "user"
