@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //Creamos el esquema del Usuario
 const userSchema = mongoose.Schema({
-  first_name: String,
+    first_name: String,
     last_name: String,
 
     email: {
@@ -13,7 +13,9 @@ const userSchema = mongoose.Schema({
     password: String,
     age:  Number,
 
-    cartId: String,
+    cart: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref:"carts"},
       
     role: {
     type: String,
