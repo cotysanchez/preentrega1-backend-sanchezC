@@ -62,11 +62,15 @@ router.get("/githubcallback", passport.authenticate("github", {failureRedirect: 
 })
 
 //GET - Current
-router.get('/current', async (req, res) => {
-    if (!req.user) return res.status(400).send({ status: 'error', message: 'No hay usuario logeado en este momento' });
-    //res.send(`El usuario actual es ${req.user.first_name} ${req.user.last_name}`)
-    res.json(req.user)
-})
+router.get('/current', (req, res) => {
+  if (req.session && req.session.user) {
+    res.json(req.session.user);
+  } else {
+    res.status(401).json({ status: 'error', message: 'No esta logueado el Usuario' });
+  }
+});
+
+
 
 
 //GET - Logout 
