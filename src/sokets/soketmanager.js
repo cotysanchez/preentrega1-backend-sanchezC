@@ -1,8 +1,7 @@
-const socket= require("socket.io");
-const ProductService= require("../services/productService.js");
-const productService= new ProductService();
-const MessageModel = require ("../dao/models/message.model.js");
-
+const socket = require('socket.io');
+const ProductService = require('../repository/productRepository.js');
+const productService = new ProductService();
+const MessageModel = require('../dao/models/message.model.js');
 
 class SocketManager {
   constructor(httpServer) {

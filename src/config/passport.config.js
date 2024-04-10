@@ -1,28 +1,26 @@
-const passport = require("passport");
-const local = require ("passport-local");
-const UserModel = require ("../dao/models/user.model.js");
-const {createHash, isValidPassword}= require("../utils/hashBcrypt.js");
-const GitHubStrategy= require ("passport-github2");
-const configObject = require("../config/config.js")
-const CartService=require("../services/cartService.js");
+const passport = require('passport');
+const local = require('passport-local');
+const UserModel = require('../dao/models/user.model.js');
+const { createHash, isValidPassword } = require('../utils/hashBcrypt.js');
+const GitHubStrategy = require('passport-github2');
+const configObject = require('../config/config.js');
+const CartService = require('../repository/cartRepository.js');
 const cartService = new CartService();
-const LocalStrategy= local.Strategy;
-const jwt = require("passport-jwt");
+const LocalStrategy = local.Strategy;
+const jwt = require('passport-jwt');
 const JWTStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
 
-
-
 const cookieExtractor = (req) => {
-    let token = null;
-    if(req && req.cookies) {
-        token = req.cookies["coderCookieToken"]
-    }
-    return token;
-}
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies['coderCookieToken'];
+  }
+  return token;
+};
 
 //Estrategia para el Registro
-const initializePassport= ()=>{
+const initializePassport = () => {
   passport.use(
     'register',
     new LocalStrategy(
@@ -37,7 +35,7 @@ const initializePassport= ()=>{
           if (userExist) return done(null, false);
 
           const newCart = await cartService.createCart();
-          
+
           const newUser = {
             first_name,
             last_name,
@@ -107,7 +105,7 @@ const initializePassport= ()=>{
               age: 36,
               email: profile._json.email,
               password: '',
-              cart:newCart._id,
+              cart: newCart._id,
             };
             //en base de datos creamos un nuevo user
             let result = await UserModel.create(newUser);
@@ -121,7 +119,7 @@ const initializePassport= ()=>{
       }
     )
   );
-/*
+  /*
   passport.use("jwt", new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]), 
         secretOrKey: "coderhouse"
@@ -138,9 +136,6 @@ const initializePassport= ()=>{
         }
     }));
 */
+};
 
-}
-
-
-
-module.exports= initializePassport;
+module.exports = initializePassport;

@@ -1,7 +1,7 @@
 const ProductModel = require("../dao/models/product.model.js");
 
 
-class ProductService {
+class ProductRepository {
 
     async addProduct({
         title,
@@ -143,5 +143,5 @@ class ProductService {
       }
 }
 
-module.exports= ProductService;
+module.exports= ProductRepository;
 

@@ -1,7 +1,7 @@
 const CartModel = require("../dao/models/cart.model.js");
 
 
-class CartService {
+class CartRepository {
     async createCart() {
         try {
             const newCart = new CartModel({ products: [] });
@@ -136,4 +136,4 @@ class CartService {
 }
 
 
-module.exports= CartService;
+module.exports= CartRepository;
