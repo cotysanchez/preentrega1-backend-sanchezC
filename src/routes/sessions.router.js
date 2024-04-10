@@ -1,54 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const UserModel= require ("../dao/models/user.model.js");
-const {isValidPassword} = require("../utils/hashBcrypt.js");
 const passport =require ("passport");
+const generateToken = require("../utils/jsonwebtoken.js");
+const SessionsController = require('../dao/controllers/sessions.controller.js');
+const sessionsController = new SessionsController();
+
+
 
 //POST - Login con Passport
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
-    
-    req.session.user = {
-      first_name: 'Admin',
-      last_name: 'Admin',
-      email: email,
-      role: 'admin',
-    };
-    
-    req.session.login = true;
-    return res.redirect('/products'); 
-  } else {
-    
-    const user = await UserModel.findOne({ email: email });
-
-    if (!user) {
-      return res
-        .status(400)
-        .send({ status: 'error', message: 'Usuario no encontrado' });
-    }
-
-    const isValid = await isValidPassword(password, user);
-    if (!isValid) {
-      return res
-        .status(400)
-        .send({ status: 'error', message: 'Credenciales Inválidas' });
-    }
-
-    req.session.user = {
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      role: user.role,
-    };
-    req.session.login = true;
-    return res.redirect('/products'); 
-  }
-});
-
-
-
+router.post('/login', sessionsController.login);
 
 
 
@@ -61,34 +21,52 @@ router.get("/githubcallback", passport.authenticate("github", {failureRedirect: 
     res.redirect("/products");
 })
 
-//GET - Current
-router.get('/current', (req, res) => {
-  if (req.session && req.session.user) {
-    res.json(req.session.user);
-  } else {
-    res.status(401).json({ status: 'error', message: 'No esta logueado el Usuario' });
+//POST - Login con JWT
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const usuario = await UserModel.findOne({ email: email });
+
+    if (!usuario) {
+      return res
+        .status(400)
+        .send({ status: 'error', message: 'Y ese usuario de donde salio?' });
+    }
+
+    if (!isValidPassword(password, usuario)) {
+      return res
+        .status(400)
+        .send({ status: 'error', message: 'Credenciales invalidas' });
+    }
+
+    //Si la contraseña es correcta, generamos el token.
+    const token = generateToken({
+      first_name: usuario.first_name,
+      last_name: usuario.last_name,
+      email: usuario.email,
+      id: usuario._id,
+    });
+
+    res.send({ status: 'success', token });
+  } catch (error) {
+    console.log('Error en al autenticación', error);
+    res
+      .status(500)
+      .send({ status: 'error', message: 'Error interno del servidor' });
   }
 });
 
 
 
+//GET - Current
+router.get('/current', sessionsController.current);
 
 //GET - Logout 
-router.get("/logout", (req,res)=>{
-    try {
-        if(req.session.login){
-        req.session.destroy();
-    }
-    res.redirect("/login");
-    }catch (error) {
-        res.status(500).json ({message: error});
-    }
-});
+router.get("/logout", sessionsController.logout);
+ // Faillogin   
+router.get("/faillogin",sessionsController.faillogin);
     
-router.get("faillogin", async (req,res)=>{
-    res.json({message: "fallo la estartegia"});
-    
-});
+
 
 
 module.exports = router;

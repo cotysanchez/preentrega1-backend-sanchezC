@@ -1,3 +1,4 @@
+
 const ProductModel = require("../models/product.model.js");
 
 class ProductManager {

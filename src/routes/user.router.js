@@ -1,47 +1,42 @@
 const express = require ("express");
 const router = express.Router();
-const UserModel= require ("../dao/models/user.model.js");
-const {createHash} = require("../utils/hashBcrypt.js");
 const passport = require("passport");
-const generateToken = require("../utils/jsonwebtoken.js");
+//const generateToken = require("../utils/jsonwebtoken.js");
+const UserController = require("../dao/controllers/user.controller.js");
+const userController = new UserController();
 
-
-/*
-router.post("/", async(req,res)=>{
-    const {first_name, last_name,email, password, age} = req.body;
-    
-  try{
-   const existUser = await UserModel.findOne({first_name,last_name,email,password,age});
-   if (existUser){
-    return res.status(400).send({error: "El correo electrónico ya esta registrado"})
-   }
-   
-   const newUser = await UserModel.create({
-     first_name,
-     last_name,
-     email,
-     password: createHash(password),
-     age,
-   });
-
-   //req.session.login =true,
-   //req.session.user= {...newUser._doc};
-
-   //res.status(200).send({message : "Usuario Creado Exitosamente"});
-   res.redirect("/login");
-
-  }catch (error){
-    console.error("Error al crear usuario:", error);
-    res.status(500).send({error: "Error al Crear Usuario"});
-
-  }
-});
-*/
 
 router.post("/",passport.authenticate("register",{failureRedirect: "/failedregister"}), async (req,res)=>{
   if(!req.user) return res.status(400).send({status: "error", message: "Credenciales Invalidas"});
   res.redirect("/login");
 })
+
+router.post(
+  '/',
+  passport.authenticate('register', {
+    failureRedirect: '/failedregister',
+  }),
+  async (req, res) => {
+    if (!req.user)
+      return res
+        .status(400)
+        .send({ status: 'error', message: 'Credenciales invalidas' });
+
+    req.session.user = {
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      age: req.user.age,
+      email: req.user.email,
+      role: req.user.role,
+      cart: req.user.cart,
+    };
+
+    req.session.login = true;
+
+    res.redirect('/profile');
+  }
+);
+
 
 router.get("failedregister", (req,res)=>{
   res.json({message: "Registro Fallido"})

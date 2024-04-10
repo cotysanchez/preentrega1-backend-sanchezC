@@ -2,14 +2,24 @@ const passport = require("passport");
 const local = require ("passport-local");
 const UserModel = require ("../dao/models/user.model.js");
 const {createHash, isValidPassword}= require("../utils/hashBcrypt.js");
-const CartManager = require('../dao/db/cart-manager-db.js');
-const cartManager = new CartManager();
-
-//Passport con GitHub
 const GitHubStrategy= require ("passport-github2");
-
-
+const configObject = require("../config/config.js")
+const CartService=require("../services/cartService.js");
+const cartService = new CartService();
 const LocalStrategy= local.Strategy;
+const jwt = require("passport-jwt");
+const JWTStrategy = jwt.Strategy;
+const ExtractJwt = jwt.ExtractJwt;
+
+
+
+const cookieExtractor = (req) => {
+    let token = null;
+    if(req && req.cookies) {
+        token = req.cookies["coderCookieToken"]
+    }
+    return token;
+}
 
 //Estrategia para el Registro
 const initializePassport= ()=>{
@@ -26,7 +36,7 @@ const initializePassport= ()=>{
           const userExist = await UserModel.findOne({ email });
           if (userExist) return done(null, false);
 
-          const newCart = await cartManager.createCart();
+          const newCart = await cartService.createCart();
           
           const newUser = {
             first_name,
@@ -94,9 +104,10 @@ const initializePassport= ()=>{
             let newUser = {
               first_name: profile._json.name,
               last_name: '',
-              age: 18,
+              age: 36,
               email: profile._json.email,
               password: '',
+              cart:newCart._id,
             };
             //en base de datos creamos un nuevo user
             let result = await UserModel.create(newUser);
@@ -110,6 +121,26 @@ const initializePassport= ()=>{
       }
     )
   );
+/*
+  passport.use("jwt", new JWTStrategy({
+        jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]), 
+        secretOrKey: "coderhouse"
+    }, async (jwt_payload, done) => {
+        try {
+            // Busca el usuario en la base de datos usando el ID del payload JWT
+            const user = await UserModel.findById(jwt_payload.user._id);
+            if (!user) {
+                return done(null, false);
+            }
+            return done(null, user); 
+        } catch (error) {
+            return done(error);
+        }
+    }));
+*/
+
 }
+
+
 
 module.exports= initializePassport;
