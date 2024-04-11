@@ -38,6 +38,7 @@ class SessionsController {
         last_name: user.last_name,
         email: user.email,
         role: user.role,
+        cart: user.cart
       };
       req.session.login = true;
       return res.redirect('/products');

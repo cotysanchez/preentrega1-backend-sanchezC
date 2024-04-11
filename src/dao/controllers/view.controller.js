@@ -46,9 +46,11 @@ class ViewsController {
         return res.status(500).json({ error: 'Error interno del servidor' });
       }
 
+      const cart = req.session.user.cart
+
       const newArray = products.docs.map((product) => {
         const { _id, ...rest } = product.toObject();
-        return rest;
+        return {...rest,cart:cart};
       });
 
       res.render('products', {
