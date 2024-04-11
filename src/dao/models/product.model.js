@@ -20,6 +20,6 @@ const productSchema = new mongoose.Schema({
 });
 
 const ProductModel= mongoose.model("Product", productSchema);
-//products tenia
+
 
 module.exports= ProductModel;

@@ -7,9 +7,8 @@ const sessionsController = new SessionsController();
 
 
 
-//POST - Login con Passport
+//Login con Passport
 router.post('/login', sessionsController.login);
-
 
 
 // GET - Para GitHub : 
@@ -56,14 +55,11 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
-
-//GET - Current
+//Current
 router.get('/current', sessionsController.current);
-
-//GET - Logout 
+//Logout 
 router.get("/logout", sessionsController.logout);
- // Faillogin   
+// Faillogin   
 router.get("/faillogin",sessionsController.faillogin);
     
 

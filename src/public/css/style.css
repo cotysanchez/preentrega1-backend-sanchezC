@@ -32,7 +32,7 @@ p {
   background-color: #ffffff;
   display: inline-block;
   font-family: Arial, sans-serif;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   max-width: 300px;
   margin: 20px;
   border: 0.1px solid #161515;
@@ -46,6 +46,12 @@ p {
   width: 100%;
   height: auto;
 }
+
+
+
+
+
+
 
 /* Estilos adicionales al pasar el mouse sobre la tarjeta  */
 .card:hover {
@@ -107,6 +113,21 @@ button {
 button:hover {
   background-color: #e5fa26;
 }
+
+.contenedor-boton {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.contenedor-boton form {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
 
 /* NAVIGATE BUTTONS - ANTERIOR/SIGUIENTE */
 .navigate-button {

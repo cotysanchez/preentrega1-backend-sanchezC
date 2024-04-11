@@ -19,6 +19,8 @@ const userRouter = require("./routes/user.router.js");
 const sessionRouter = require("./routes/sessions.router.js");
 const passport = require("passport");
 const initializePassport= require("./config/passport.config.js");
+//const authMiddleware = require('./middleware/authmiddleware.js');
+
 
 require('./database.js');
 
@@ -66,6 +68,9 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
+//AuthMiddleware
+//app.use(authMiddleware);
+
 //Listen PORT
 const httpServer = app.listen(PORT, () => {
   console.log(
@@ -76,6 +81,9 @@ const httpServer = app.listen(PORT, () => {
 //Websocket
 const SocketManager = require("./sokets/soketmanager.js");
 new SocketManager(httpServer);
+
+
+
 
 
 

@@ -7,7 +7,15 @@
       <img src="https://placekitten.com/200/286" class="card-img-top" alt="{{this.title}}" />
       <h3> {{this.product.title}}</h3>
       <p>Cantidad: {{this.quantity}}</p>
+      <p>Precio: $ {{this.product.totalPrice}}</p>
+      <button onclick="deleteProduct('{{this.cartId}}', '{{this.product._id}}')"
+                class="btn btn-danger">Eliminar</button>
       
     </div>
   {{/each}}
 </div>
+
+<button onclick="emptyCart('{{cartId}}')" class="btn btn-danger">Vaciar Carrito</button>
+<h3 class="mt-2">Total de la compra: ${{totalCompra}}</h3>
+
+<script src="js/cart.js"></script>

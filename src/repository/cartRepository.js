@@ -74,7 +74,6 @@ class CartRepository {
     }
   }
 
-
   async updateCart (cartId, updatedProducts){
     try {
         const cart = await CartModel.findById(cartId);
@@ -93,7 +92,6 @@ class CartRepository {
         
     }
   }
-
 
   async updateQuantityProduct(cartId, productId, newQuantity){
     try {
@@ -119,7 +117,6 @@ class CartRepository {
         
     }
   }
-
     async emptyCart( cartId){
         try {
             const cart = await CartModel.findByIdAndUpdate(cartId, {products:[]}, {new: true});
@@ -134,6 +131,5 @@ class CartRepository {
         }
     }
 }
-
 
 module.exports= CartRepository;

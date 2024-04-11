@@ -14,6 +14,14 @@
             <button class="logout-profile-button">
                 <a href="/api/sessions/logout" >Logout</a>
             </button>
+        
         </div>
+
     </div>
+    {{#if this.isAdmin}}
+    <button class="" href="/realtimeproducts">Modificar Productos</button>
+  {{else}}
+    <button class="" href="/chat">Chat en vivo</button>
+    <button class="" href="/products">Tienda</button>
+  {{/if}}
 </div>

@@ -2,7 +2,6 @@ const ProductModel = require("../dao/models/product.model.js");
 
 
 class ProductRepository {
-
     async addProduct({
         title,
         description,

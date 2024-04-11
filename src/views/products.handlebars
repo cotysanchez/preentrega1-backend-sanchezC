@@ -24,8 +24,13 @@
       <p>Price: $ {{this.price}}</p>
       <p>Category: {{this.category}}</p>
 
-       <button> Agregar al Carrito </button>
-     
+    <div class="contenedor-boton">
+      <form action="/api/carts/{{../cartId}}/product/{{id}}" method="POST">
+          <button class="boton-producto" type="submit">Agregar al Carrito</button>
+      </form>
+    </div> 
+
+      
     </div>
   {{/each}}
 </div>

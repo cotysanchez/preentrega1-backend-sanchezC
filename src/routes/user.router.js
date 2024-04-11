@@ -6,11 +6,6 @@ const UserController = require("../dao/controllers/user.controller.js");
 const userController = new UserController();
 
 
-router.post("/",passport.authenticate("register",{failureRedirect: "/failedregister"}), async (req,res)=>{
-  if(!req.user) return res.status(400).send({status: "error", message: "Credenciales Invalidas"});
-  res.redirect("/login");
-})
-
 router.post(
   '/',
   passport.authenticate('register', {
@@ -36,7 +31,6 @@ router.post(
     res.redirect('/profile');
   }
 );
-
 
 router.get("failedregister", (req,res)=>{
   res.json({message: "Registro Fallido"})
