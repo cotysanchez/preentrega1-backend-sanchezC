@@ -1,6 +1,6 @@
 const UserModel = require("../models/user.model.js");
 const {isValidPassword} = require("../../utils/hashBcrypt.js");
-
+const jwt = require("jsonwebtoken");
 
 
 class SessionsController {
@@ -8,14 +8,26 @@ class SessionsController {
     const { email, password } = req.body;
 
     if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
-      req.session.user = {
+      const usuario = {
         first_name: 'Admin',
         last_name: 'Admin',
         email: email,
         role: 'admin',
+        cart: false
       };
+      req.session.user= usuario;
 
       req.session.login = true;
+      const token = jwt.sign({ user: usuario }, 'coderhouse', {
+        expiresIn: '1h',
+      });
+
+      res.cookie('coderCookieToken', token, {
+        maxAge: 3600000,
+        httpOnly: true,
+      });
+
+
       return res.redirect('/products');
     } else {
       const user = await UserModel.findOne({ email: email });
@@ -32,15 +44,24 @@ class SessionsController {
           .status(400)
           .send({ status: 'error', message: 'Credenciales Inválidas' });
       }
-
-      req.session.user = {
+      const usuario={
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         role: user.role,
         cart: user.cart
-      };
+      }
+      
+      req.session.user= usuario;
       req.session.login = true;
+      const token = jwt.sign({ user: usuario }, 'coderhouse', {
+        expiresIn: '1h',
+      });
+      res.cookie('coderCookieToken', token, {
+        maxAge: 3600000,
+        httpOnly: true,
+      });
+
       return res.redirect('/products');
     }
   }

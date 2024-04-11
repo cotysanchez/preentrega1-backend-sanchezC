@@ -34,7 +34,7 @@ class CartRepository {
             }
       
             const existProduct = cart.products.find(
-            (item) => item.product.toString() === productId
+            (item) => item.product._id.toString() === productId
             );
 
             if (existProduct) {

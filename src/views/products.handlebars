@@ -1,48 +1,92 @@
 {{>header}}
+
 {{#if user}}
+
 <div class="card" style="background-color: #ffffff">
+
   <h3>¡Bienvenido {{user.first_name}} {{user.last_name}}!</h3>
+
   <p>Email: {{user.email}}</p>
+
   <p>Rol: {{user.role}}</p>
 
+ {{#if user.cart}}
+
+  <a href="/api/carts/carts/{{user.cart}}" class="navigate-button" style="color: rgb(37, 34, 34); margin-left: 0.3px;margin-right: 10px">Carrito <span id="LengthCart">{{cartLength}}</span></a>
+
+{{/if}}
+
   <a href="/api/sessions/logout" class="navigate-button" style="color: rgb(37, 34, 34); margin-left: 0.3px">Logout</a>
+
 </div>
 
 {{/if}}
+
 <div  style="color:#00000">
+
   <h2> Productos</h2>
+
 </div>
 
 <div id="product-container">
-  
+
   {{#each products}}
+
     <div class="card">
+
       <!--<p>ID: {{this._id}}</p>-->
+
       <img src="https://res.cloudinary.com/dftcprmrq/image/upload/v1695049295/samples/ecommerce/shoes.png" class="card-img-top" alt="{{this.title}}" />
+
       <h3> {{this.title}}</h3>
+
       <p>Description: {{this.description}}</p>
+
       <p>Price: $ {{this.price}}</p>
+
       <p>Category: {{this.category}}</p>
 
     <div class="contenedor-boton">
-      <form action="/api/carts/{{this.cart}}/product/{{id}}" method="POST">
-          <button class="boton-producto" type="submit">Agregar al Carrito</button>
-      </form>
-    </div> 
 
-      
+  {{#if this.cart}}
+
+          <button class="boton-producto" type="submit" id="btnSend" value="carts/{{this.cart}}/product/{{this._id}}">Agregar al Carrito</button>
+
+          {{else}}
+
+          <button class="boton-producto" type="submit" onclick="agregarAlerta('No puedes porque eres admin')">Agregar al Carrito</button>
+
+          {{/if}}
+
+   </div>
+
     </div>
+
   {{/each}}
+
 </div>
 
 {{#if hasNextPage}}
 
     <a href="/products?page={{nextPage}}" class="navigate-button" style="color:#00000">Siguiente</a>
+
 {{/if}}
 
 {{#if hasPrevPage}}
 
     <a href="/products?page={{prevPage}}" class="navigate-button"style="color:#00000" >Anterior</a>
+
 {{/if}}
 
 <p style="margin-top: 25px; margin-button: 40px; margin-left: 20px">Pagina {{currentPage}} de {{totalPages}}   </p>
+
+<script src="js/products.js"></script>
+
+
+
+
+
+
+
+
+

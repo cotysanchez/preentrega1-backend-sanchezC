@@ -1,4 +1,6 @@
+const { request } = require('express');
 const ProductService = require('../../repository/productRepository.js');
+const CartModel = require('../models/cart.model.js');
 const productService = new ProductService();
 
 class ViewsController {
@@ -46,12 +48,17 @@ class ViewsController {
         return res.status(500).json({ error: 'Error interno del servidor' });
       }
 
-      const cart = req.session.user.cart
+      const cart = req.session.user.cart?req.session.user.cart:false
 
       const newArray = products.docs.map((product) => {
         const { _id, ...rest } = product.toObject();
-        return {...rest,cart:cart};
+        return {...rest,cart:cart,_id:(_id+'')};
       });
+
+      let cartunico
+      if(cart){
+        cartunico = await CartModel.findOne({ _id: req.session.user.cart });
+      }
 
       res.render('products', {
         products: newArray,
@@ -62,6 +69,7 @@ class ViewsController {
         currentPage: products.page,
         totalPages: products.totalPages,
         user: req.session.user,
+        cartLength: cart?cartunico.products.length:false
       });
     } catch (error) {
       console.log('Error al obtener productos:', error);
