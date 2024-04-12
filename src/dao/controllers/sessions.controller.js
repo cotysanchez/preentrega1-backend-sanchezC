@@ -1,32 +1,35 @@
 const UserModel = require("../models/user.model.js");
 const {isValidPassword} = require("../../utils/hashBcrypt.js");
 const jwt = require("jsonwebtoken");
+require ("dotenv").config();
+const adminEmail = process.env.ADMIN_EMAIL;
+const adminPassword = process.env.ADMIN_PASSWORD;
 
 
 class SessionsController {
   async login(req, res) {
     const { email, password } = req.body;
+   
 
-    if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
+    if (email === adminEmail && password === adminPassword) {
       const usuario = {
         first_name: 'Admin',
         last_name: 'Admin',
         email: email,
         role: 'admin',
-        cart: false
+        cart: false,
       };
-      req.session.user= usuario;
+      req.session.user = usuario;
 
       req.session.login = true;
       const token = jwt.sign({ user: usuario }, 'coderhouse', {
-        expiresIn: '1h',
+        expiresIn: '5h',
       });
 
       res.cookie('coderCookieToken', token, {
-        maxAge: 3600000,
+        maxAge: 36000000,
         httpOnly: true,
       });
-
 
       return res.redirect('/products');
     } else {
@@ -44,21 +47,21 @@ class SessionsController {
           .status(400)
           .send({ status: 'error', message: 'Credenciales Inválidas' });
       }
-      const usuario={
+      const usuario = {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         role: user.role,
-        cart: user.cart
-      }
-      
-      req.session.user= usuario;
+        cart: user.cart,
+      };
+
+      req.session.user = usuario;
       req.session.login = true;
       const token = jwt.sign({ user: usuario }, 'coderhouse', {
-        expiresIn: '1h',
+        expiresIn: '5h',
       });
       res.cookie('coderCookieToken', token, {
-        maxAge: 3600000,
+        maxAge: 36000000,
         httpOnly: true,
       });
 
@@ -92,6 +95,5 @@ class SessionsController {
   }
 
 }
-
 
 module.exports = SessionsController;

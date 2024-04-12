@@ -6,9 +6,14 @@ const SessionsController = require('../dao/controllers/sessions.controller.js');
 const sessionsController = new SessionsController();
 
 
-
 //Login con Passport
 router.post('/login', sessionsController.login);
+//Current
+router.get('/current', sessionsController.current);
+//Logout 
+router.get("/logout", sessionsController.logout);
+// Faillogin   
+router.get("/faillogin",sessionsController.faillogin);
 
 
 // GET - Para GitHub : 
@@ -55,14 +60,5 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//Current
-router.get('/current', sessionsController.current);
-//Logout 
-router.get("/logout", sessionsController.logout);
-// Faillogin   
-router.get("/faillogin",sessionsController.faillogin);
     
-
-
-
 module.exports = router;

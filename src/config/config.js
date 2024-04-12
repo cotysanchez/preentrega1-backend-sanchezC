@@ -9,7 +9,10 @@ dotenv.config({
 
 const configObject = {
   mongo_url: process.env.MONGO_URL,
-  
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
 };
 
 module.exports = configObject;

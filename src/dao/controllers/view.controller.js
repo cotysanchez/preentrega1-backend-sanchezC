@@ -1,7 +1,6 @@
-const { request } = require('express');
-const ProductService = require('../../repository/productRepository.js');
 const CartModel = require('../models/cart.model.js');
-const productService = new ProductService();
+const ProductRepository = require('../../repository/productRepository.js');
+const productRepository = new ProductRepository();
 
 class ViewsController {
   //GET - Mostrar Todos los Productos en "/" - Incio en Login
@@ -10,7 +9,7 @@ class ViewsController {
       if (!req.session.login) {
         return res.redirect('/login');
       } else {
-        const productos = await productService.getProducts();
+        const productos = await productRepository.getProducts();
         res.render('login', { products: productos });
       }
     } catch (error) {
@@ -36,7 +35,7 @@ class ViewsController {
   async Products(req, res) {
     try {
       const { page = 1, limit = 10 } = req.query;
-      const products = await productService.getProducts({
+      const products = await productRepository.getProducts({
         page: parseInt(page),
         limit: parseInt(limit),
       });
@@ -48,15 +47,15 @@ class ViewsController {
         return res.status(500).json({ error: 'Error interno del servidor' });
       }
 
-      const cart = req.session.user.cart?req.session.user.cart:false
+      const cart = req.session.user.cart ? req.session.user.cart : false;
 
       const newArray = products.docs.map((product) => {
         const { _id, ...rest } = product.toObject();
-        return {...rest,cart:cart,_id:(_id+'')};
+        return { ...rest, cart: cart, _id: _id + '' };
       });
 
-      let cartunico
-      if(cart){
+      let cartunico;
+      if (cart) {
         cartunico = await CartModel.findOne({ _id: req.session.user.cart });
       }
 
@@ -69,7 +68,7 @@ class ViewsController {
         currentPage: products.page,
         totalPages: products.totalPages,
         user: req.session.user,
-        cartLength: cart?cartunico.products.length:false
+        cartLength: cart ? cartunico.products.length : false,
       });
     } catch (error) {
       console.log('Error al obtener productos:', error);

@@ -21,5 +21,4 @@ router.delete("/:cid", cartController.emptyCart);
 router.get("/carts/:cid", cartController.cartCid);
 
 
-
 module.exports = router;

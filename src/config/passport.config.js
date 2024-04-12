@@ -4,8 +4,8 @@ const UserModel = require('../dao/models/user.model.js');
 const { createHash, isValidPassword } = require('../utils/hashBcrypt.js');
 const GitHubStrategy = require('passport-github2');
 const configObject = require('../config/config.js');
-const CartService = require('../repository/cartRepository.js');
-const cartService = new CartService();
+const CartRepository = require('../repository/cartRepository.js');
+const cartRepository = new CartRepository();
 const LocalStrategy = local.Strategy;
 const jwt = require('passport-jwt');
 const JWTStrategy = jwt.Strategy;
@@ -34,7 +34,7 @@ const initializePassport = () => {
           const userExist = await UserModel.findOne({ email });
           if (userExist) return done(null, false);
 
-          const newCart = await cartService.createCart();
+          const newCart = await cartRepository.createCart();
 
           const newUser = {
             first_name,
@@ -119,7 +119,7 @@ const initializePassport = () => {
       }
     )
   );
-  /*
+  
   passport.use("jwt", new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]), 
         secretOrKey: "coderhouse"
@@ -135,7 +135,7 @@ const initializePassport = () => {
             return done(error);
         }
     }));
-*/
+
 };
 
 module.exports = initializePassport;

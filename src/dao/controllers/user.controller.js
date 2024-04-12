@@ -29,11 +29,11 @@ class UserController {
       await newUser.save();
 
       const token = jwt.sign({ user: newUser }, 'coderhouse', {
-        expiresIn: '1h',
+        expiresIn: '5h',
       });
 
       res.cookie('coderCookieToken', token, {
-        maxAge: 3600000,
+        maxAge: 36000000,
         httpOnly: true,
       });
 
@@ -59,11 +59,11 @@ class UserController {
       }
 
       const token = jwt.sign({ user: user }, 'coderhouse', {
-        expiresIn: '1h',
+        expiresIn: '5h',
       });
 
       res.cookie('coderCookieToken', token, {
-        maxAge: 3600000,
+        maxAge: 36000000,
         httpOnly: true,
       });
 
@@ -95,6 +95,8 @@ class UserController {
     }
     res.render('admin');
   }
+
+ 
 }
 
 module.exports = UserController;

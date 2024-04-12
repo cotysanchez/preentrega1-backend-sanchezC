@@ -4,7 +4,7 @@ const cartRepository = new CartRepository();
 const TicketModel = require("../models/ticket.model.js");
 const UserModel= require("../models/user.model.js");
 const ProductRepository =require("../../repository/productRepository.js");
-const productRepository =new ProductRepository();
+const productRepository = new ProductRepository();
 const {generateUniqueCode, calcularTotal} = require("../../utils/cartutils.js");
 
 class CartController {
@@ -212,6 +212,4 @@ class CartController {
     }
 
 }
-
-
 module.exports = CartController;

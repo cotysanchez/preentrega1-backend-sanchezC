@@ -12,7 +12,7 @@
 
  {{#if user.cart}}
 
-  <a href="/api/carts/carts/{{user.cart}}" class="navigate-button" style="color: rgb(37, 34, 34); margin-left: 0.3px;margin-right: 10px">Carrito <span id="LengthCart">{{cartLength}}</span></a>
+  <a href="/api/carts/carts/{{user.cart}}" class="navigate-button" style="color: rgb(37, 34, 34); margin-left: 0.3px;margin-right: 10px">Carrito 🛒 <span id="LengthCart">{{cartLength}}</span></a>
 
 {{/if}}
 
@@ -46,16 +46,13 @@
 
       <p>Category: {{this.category}}</p>
 
-    <div class="contenedor-boton">
+  <div class="contenedor-boton">
 
   {{#if this.cart}}
 
           <button class="boton-producto" type="submit" id="btnSend" value="carts/{{this.cart}}/product/{{this._id}}">Agregar al Carrito</button>
-
           {{else}}
-
           <button class="boton-producto" type="submit" onclick="agregarAlerta('No puedes porque eres admin')">Agregar al Carrito</button>
-
           {{/if}}
 
    </div>

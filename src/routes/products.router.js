@@ -4,8 +4,6 @@ const ProductController = require("../dao/controllers/product.controller.js");
 const productController = new ProductController();
 
 
-
-
 //Obtener todos los prodcutos
 router.get('/', productController.getProducts);
   

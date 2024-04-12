@@ -15,7 +15,7 @@ router.get('/', viewsController.getProducts);
 router.get('/realtimeproducts', checkUserRole(['admin']),viewsController.realTimeProducts);
 
 //GET - Mostrar Chat en "/chat"
-router.get("/chat", viewsController.chat);
+router.get("/chat",checkUserRole(['user']), viewsController.chat);
 
 //GET - mostrar productos en /products 
 router.get('/products', viewsController.Products);
@@ -28,6 +28,5 @@ router.get("/register", viewsController.register);
 
 //Perfil
 router.get("/profile", viewsController.profile);
-
 
 module.exports = router;

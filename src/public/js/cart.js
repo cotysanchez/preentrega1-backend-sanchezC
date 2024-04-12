@@ -1,4 +1,4 @@
-function deleteProducto(cartId, productId) {
+function deleteProduct(cartId, productId) {
   fetch(`/api/carts/${cartId}/product/${productId}`, {
     method: 'DELETE',
   })
