@@ -19,13 +19,15 @@ router.get('/realtimeproducts', checkUserRole(['admin']),viewsController.realTim
 router.get("/chat",checkUserRole(['user']), viewsController.chat);
 
 //GET - mostrar productos en /products 
-//router.get('/products', viewsController.Products);
+router.get('/products', viewsController.Products);
+/*
 router.get(
   '/products',
-  checkUserRole(['usuario']),
+  checkUserRole(['user']),
   passport.authenticate('jwt', { session: false }),
   viewsController.renderProducts
 );
+*/
 //Render Cart
 router.get('/carts/:cid', viewsController.renderCart);
 
