@@ -8,7 +8,7 @@
       <img src="https://res.cloudinary.com/dftcprmrq/image/upload/v1695049295/samples/ecommerce/shoes.png" class="card-img-top" alt="{{this.title}}" />
       <h3> {{this.product.title}}</h3>
       <p>Cantidad: {{this.quantity}}</p>
-      <p>Precio: $ {{this.product.totalPrice}}</p>
+      <p>Precio: $ {{this.product.price}}</p>
       <button onclick="deleteProduct('{{this.cartId}}', '{{this.product._id}}')"
                 class="btn btn-danger">Eliminar</button>
       
@@ -17,6 +17,53 @@
 
 
 <button onclick="emptyCart('{{cartId}}')" class="btn btn-danger">Vaciar Carrito</button>
-<h3 class="mt-2">Total de la compra: ${{totalCompra}}</h3>
+<h3 class="mt-2">Total de la compra: ${{totalBuy}}</h3>
 
-<script src="js/cart.js"></script>
+<button onclick="finishPurchase('{{cartId}}')">Terminar Compra</button>
+
+<script>
+  function deleteProduct(cartId, productId) {
+  fetch(`/api/carts/${cartId}/product/${productId}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Error al eliminar el producto del carrito');
+      }
+      location.reload();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+function emptyCart(cartId) {
+  fetch(`/api/carts/${cartId}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Error al vaciar el carrito');
+      }
+      location.reload();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+function finishPurchase(cartId) {
+  fetch(`/api/carts/${cartId}/purchase`, {
+    method: 'POST',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Error al finalizar la compra');
+      }
+      location.reload();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+</script>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CartController = require("../dao/controllers/cart.controller.js");
 const cartController = new CartController();
+const passport =require ("passport");
 
 //Crear Carrito Nuevo
 router.post('/', cartController.createCart);   
@@ -19,6 +20,8 @@ router.put("/:cid/product/:pid", cartController.updateQuantityProduct);
 router.delete("/:cid", cartController.emptyCart);
 //mostrar en /carts/:cid los productos que pertenecen a dicho carrito
 router.get("/carts/:cid", cartController.cartCid);
+//Finalizar Compra
+router.post("/:cid/purchase", passport.authenticate("jwt",{session: false}), cartController.finishPurchase);
 
 
 module.exports = router;

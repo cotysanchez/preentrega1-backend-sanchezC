@@ -5,6 +5,23 @@ const passport = require("passport");
 const UserController = require("../dao/controllers/user.controller.js");
 const userController = new UserController();
 
+/*
+// Ruta para registrar un nuevo usuario
+router.post('/register', userController.register);
+
+// Ruta para iniciar sesión
+router.post('/login', userController.login);
+
+// Ruta para mostrar el perfil del usuario
+router.get('/profile', userController.profile);
+
+// Ruta para cerrar sesión
+router.get('/logout', userController.logout);
+
+// Ruta para acceder al panel de administrador (solo para usuarios con rol de administrador)
+router.get('/admin', userController.admin);
+*/
+
 
 router.post(
   '/',

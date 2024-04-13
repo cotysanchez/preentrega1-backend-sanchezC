@@ -8,6 +8,7 @@ const checkUserRole = require("../middleware/checkrole.js");
 require("../config/passport.config")(passport);
 
 
+
 //GET - Mostrar Todos los Productos en "/" -  
 router.get('/', viewsController.getProducts);
       
@@ -18,7 +19,16 @@ router.get('/realtimeproducts', checkUserRole(['admin']),viewsController.realTim
 router.get("/chat",checkUserRole(['user']), viewsController.chat);
 
 //GET - mostrar productos en /products 
-router.get('/products', viewsController.Products);
+//router.get('/products', viewsController.Products);
+router.get(
+  '/products',
+  checkUserRole(['usuario']),
+  passport.authenticate('jwt', { session: false }),
+  viewsController.renderProducts
+);
+//Render Cart
+router.get('/carts/:cid', viewsController.renderCart);
+
 
 //Login
 router.get("/login", viewsController.login);
