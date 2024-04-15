@@ -7,7 +7,6 @@ const checkUserRole = require("../middleware/checkrole.js");
 
 
 
-
 //GET - Mostrar Todos los Productos en "/" -  
 router.get('/', viewsController.getProducts);
       

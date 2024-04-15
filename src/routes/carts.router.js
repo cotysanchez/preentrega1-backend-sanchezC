@@ -20,10 +20,9 @@ router.put("/:cid/product/:pid", cartController.updateQuantityProduct);
 router.delete("/:cid", cartController.emptyCart);
 //mostrar en /carts/:cid los productos que pertenecen a dicho carrito
 //router.get("/carts/:cid", cartController.cartCid);
+
 //Finalizar Compra
-router.post(
-  '/:cid/purchase', cartController.finishPurchase
-);
+router.post('/:cid/purchase', cartController.finishPurchase);
 
 
 module.exports = router;

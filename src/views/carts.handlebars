@@ -45,7 +45,6 @@
 
 
 
-
 <script>
   function addQuantity(cartId, productId) {
     const quantityElement = document.getElementById(`quantity_${productId}`);
@@ -75,6 +74,7 @@
         if (!response.ok) {
           throw new Error('Error al actualizar la cantidad del producto');
         }
+        location.reload();
         quantityElement.innerText = newQuantity;
       })
       .catch((error) => {
@@ -82,7 +82,6 @@
       });
   }
   
-
 
   function deleteProduct(cartId, productId) {
   fetch(`/api/carts/${cartId}/product/${productId}`, {
@@ -136,23 +135,4 @@ function finishPurchase(cartId) {
         });
 }
 
-
-
-
-/*
-function finishPurchase(cartId) {
-  fetch(`/api/carts/${cartId}/purchase`, {
-    method: 'POST',
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Error al finalizar la compra');
-      }
-      location.reload();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-*/
 </script>

@@ -167,7 +167,7 @@ class ViewsController {
       const purchaser = await UserModel.findById(ticket.purchaser);
       const products = cart.products;
       const cartInfo =
-        'Productos pendientes de compra. Momentaneamente sin stock';
+        ' Pendientes de compra. Sin stock por el momento';
       const title = 'Compra Finalizada';
       const hasTicket = true;
 
