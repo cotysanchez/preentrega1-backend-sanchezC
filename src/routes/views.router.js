@@ -4,8 +4,7 @@ const ViewsController = require("../dao/controllers/view.controller.js");
 const viewsController= new ViewsController();
 const passport= require("passport");
 const checkUserRole = require("../middleware/checkrole.js");
-// Configura Passport.js - Asegúrate de que passport esté correctamente configurado en tu aplicación
-require("../config/passport.config")(passport);
+
 
 
 
@@ -31,7 +30,6 @@ router.get(
 //Render Cart
 router.get('/carts/:cid', viewsController.renderCart);
 
-
 //Login
 router.get("/login", viewsController.login);
 
@@ -40,5 +38,7 @@ router.get("/register", viewsController.register);
 
 //Perfil
 router.get("/profile", viewsController.profile);
+
+router.get("/finishPurchase/:cid/ticket/:tid", viewsController.renderPurchase);
 
 module.exports = router;

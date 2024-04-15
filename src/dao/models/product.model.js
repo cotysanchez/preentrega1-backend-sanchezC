@@ -20,10 +20,10 @@ const productSchema = new mongoose.Schema({
     required:true},
 
     category: {type:String,
-    required:true},
+    required: false}, //aca era true
 
     status: {type:Boolean,
-    required:true}
+    required: false} //aca era true
 });
 
 const ProductModel= mongoose.model("Product", productSchema);

@@ -47,7 +47,19 @@ p {
   height: auto;
 }
 
+.quantity-container {
+  display: flex;
+  align-items: center;
+}
 
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls button {
+  margin: 0 5px; /* Ajusta el espacio entre los botones */
+}
 
 
 

@@ -1,3 +1,4 @@
+/*
 class ProductDTO {
   constructor(nombre, categoria, precio) {
     this.nombre = nombre;
@@ -8,3 +9,4 @@ class ProductDTO {
 }
 
 module.exports = ProductDTO;
+*/

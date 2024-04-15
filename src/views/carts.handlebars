@@ -7,8 +7,19 @@
     
       <img src="https://res.cloudinary.com/dftcprmrq/image/upload/v1695049295/samples/ecommerce/shoes.png" class="card-img-top" alt="{{this.title}}" />
       <h3> {{this.product.title}}</h3>
-      <p>Cantidad: {{this.quantity}}</p>
-      <p>Precio: $ {{this.product.price}}</p>
+
+       <div class="quantity-container">
+          <p>Cantidad: </p>
+          <div class="quantity-controls">
+            <button onclick="removeQuantity('{{this.cartId}}', '{{this.product._id}}')" class="btn btn-secondary btn-sm">-</button>
+            <span id="quantity_{{this.product._id}}" class="quantity">{{this.quantity}}</span>
+            <button onclick="addQuantity('{{this.cartId}}', '{{this.product._id}}')" class="btn btn-secondary btn-sm">+</button>
+          </div>
+      </div>
+
+
+      <p>Precio Unitario : ${{this.product.price}}</p> 
+      <p>Total: ${{this.product.totalPrice}}</p>
       <button onclick="deleteProduct('{{this.cartId}}', '{{this.product._id}}')"
                 class="btn btn-danger">Eliminar</button>
       
@@ -19,9 +30,60 @@
 <button onclick="emptyCart('{{cartId}}')" class="btn btn-danger">Vaciar Carrito</button>
 <h3 class="mt-2">Total de la compra: ${{totalBuy}}</h3>
 
-<button onclick="finishPurchase('{{cartId}}')">Terminar Compra</button>
+<button onclick="finishPurchase('{{cartId}}')">Finalizar Compra</button>
+
+{{#if hasTicket}}
+    <h2>Ticket de Compra</h2>
+    <h4>Comprador:</h4>
+    <p>{{purchaser.first_name}} {{purchaser.last_name}}</p>
+    <p>{{purchaser.email}}</p>
+    <h4>Código: {{ticket.code}}</h4>
+    <h4>Fecha Emisión: {{ticket.purchase_datetime}}</h4>
+    <h4>Total Compra: {{ticket.amount}}</h4>
+{{/if}}
+
+
+
+
 
 <script>
+  function addQuantity(cartId, productId) {
+    const quantityElement = document.getElementById(`quantity_${productId}`);
+    let quantity = parseInt(quantityElement.innerText);
+    quantity++;
+    updateQuantity(cartId, productId, quantity, quantityElement);
+  }
+
+  function removeQuantity(cartId, productId) {
+    const quantityElement = document.getElementById(`quantity_${productId}`);
+    let quantity = parseInt(quantityElement.innerText);
+    if (quantity > 1) {
+      quantity--;
+      updateQuantity(cartId, productId, quantity, quantityElement);
+    }
+  }
+
+  function updateQuantity(cartId, productId, newQuantity, quantityElement) {
+    fetch(`/api/carts/${cartId}/product/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ quantity: newQuantity }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al actualizar la cantidad del producto');
+        }
+        quantityElement.innerText = newQuantity;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+  
+
+
   function deleteProduct(cartId, productId) {
   fetch(`/api/carts/${cartId}/product/${productId}`, {
     method: 'DELETE',
@@ -53,6 +115,32 @@ function emptyCart(cartId) {
 }
 
 function finishPurchase(cartId) {
+    fetch(`/api/carts/${cartId}/purchase`, {
+        method: 'POST'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al finalizar la compra');
+            }
+            // Obtener el ID del ticket de la respuesta
+            return response.json();
+        })
+        .then(data => {
+            const ticketId = data.ticketId;
+            const cartId = data.cartId;
+            // Redirijo a la página actual pero con detalles del ticket
+            window.location.href = `/finishPurchase/${cartId}/ticket/${ticketId}`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+
+
+
+/*
+function finishPurchase(cartId) {
   fetch(`/api/carts/${cartId}/purchase`, {
     method: 'POST',
   })
@@ -66,4 +154,5 @@ function finishPurchase(cartId) {
       console.error('Error:', error);
     });
 }
+*/
 </script>

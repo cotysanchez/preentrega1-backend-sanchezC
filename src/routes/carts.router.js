@@ -19,9 +19,11 @@ router.put("/:cid/product/:pid", cartController.updateQuantityProduct);
 //Vaciamos el Carrito
 router.delete("/:cid", cartController.emptyCart);
 //mostrar en /carts/:cid los productos que pertenecen a dicho carrito
-router.get("/carts/:cid", cartController.cartCid);
+//router.get("/carts/:cid", cartController.cartCid);
 //Finalizar Compra
-router.post("/:cid/purchase", passport.authenticate("jwt",{session: false}), cartController.finishPurchase);
+router.post(
+  '/:cid/purchase', cartController.finishPurchase
+);
 
 
 module.exports = router;
