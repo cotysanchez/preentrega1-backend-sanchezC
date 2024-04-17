@@ -1,5 +1,5 @@
 const ProductModel = require("../dao/models/product.model.js");
-
+const {faker} = require("@faker-js/faker");
 
 class ProductRepository {
     async addProduct({
@@ -140,6 +140,7 @@ class ProductRepository {
           throw error;
         }
       }
+ 
 }
 
 module.exports= ProductRepository;

@@ -1,0 +1,13 @@
+const EErrors = {
+  RUTA_ERROR: 1,
+  TIPO_INVALIDO: 2,
+  BD_ERROR: 3,
+  PRODUCTO_EXISTENTE: 4,
+  PRODUCTO_NO_ENCONTRADO: 5,
+  AGREGAR_PRODUCTO_AL_CARRITO: 6,
+
+};
+
+module.exports= {
+    EErrors
+}

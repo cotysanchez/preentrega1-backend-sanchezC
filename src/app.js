@@ -19,9 +19,9 @@ const userRouter = require("./routes/user.router.js");
 const sessionRouter = require("./routes/sessions.router.js");
 const passport = require("passport");
 const initializePassport= require("./config/passport.config.js");
-//const authMiddleware = require('./middleware/authmiddleware.js');
-
-
+const authMiddleware = require('./middleware/authmiddleware.js');
+const mockingRouter = require("./routes/mocking.router.js");
+const errorHandler= require("./middleware/error.js");
 require('./database.js');
 
 // Handlebars
@@ -54,7 +54,7 @@ app.use(
     }),
   })
 );
-
+app.use(errorHandler);
 
 //Routes
 app.use('/', viewsRouter);
@@ -62,6 +62,7 @@ app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/sessions", sessionRouter);
+app.use("/", mockingRouter);
 
 //Passport
 initializePassport();

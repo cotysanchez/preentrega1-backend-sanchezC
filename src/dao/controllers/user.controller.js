@@ -95,8 +95,6 @@ class UserController {
     }
     res.render('admin');
   }
-
- 
 }
 
 module.exports = UserController;

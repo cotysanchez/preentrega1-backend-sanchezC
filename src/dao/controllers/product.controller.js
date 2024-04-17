@@ -1,6 +1,7 @@
 const ProductRepository = require('../../repository/productRepository.js');
 const productRepository = new ProductRepository();
 
+
 class ProductController {
   async getProducts(req, res) {
     try {
@@ -86,6 +87,7 @@ class ProductController {
       res.status(500).json({ message: 'Error al eliminar el producto' });
     }
   }
+
 }
 
 module.exports = ProductController;

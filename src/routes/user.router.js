@@ -53,4 +53,6 @@ router.get("failedregister", (req,res)=>{
   res.json({message: "Registro Fallido"})
 });
 
+
+
 module.exports = router;
