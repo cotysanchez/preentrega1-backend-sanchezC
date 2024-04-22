@@ -1,4 +1,4 @@
-const { EErrors } = require('./enums.js');
+const { EErrors } = require('./enums');
 
 
 function generarInfoError(codigoError) {

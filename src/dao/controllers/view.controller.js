@@ -1,12 +1,12 @@
 const CartModel = require('../models/cart.model.js');
-const ProductModel = require("../models/product.model.js");
+const ProductModel = require('../models/product.model.js');
 const ProductRepository = require('../../repository/productRepository.js');
 const productRepository = new ProductRepository();
-const CartRepository = require("../../repository/cartRepository.js");
-const cartRepository= new CartRepository();
-const TicketRepository= require("../../repository/ticketRepository.js");
+const CartRepository = require('../../repository/cartRepository.js');
+const cartRepository = new CartRepository();
+const TicketRepository = require('../../repository/ticketRepository.js');
 const ticketRepository = new TicketRepository();
-const UserModel = require("../models/user.model.js");
+const UserModel = require('../models/user.model.js');
 
 class ViewsController {
   async renderProducts(req, res) {
@@ -166,8 +166,7 @@ class ViewsController {
       const ticket = await ticketRepository.getTicketById(req.params.tid);
       const purchaser = await UserModel.findById(ticket.purchaser);
       const products = cart.products;
-      const cartInfo =
-        ' Pendientes de compra. Sin stock por el momento';
+      const cartInfo = ' Pendientes de compra. Sin stock por el momento';
       const title = 'Compra Finalizada';
       const hasTicket = true;
 

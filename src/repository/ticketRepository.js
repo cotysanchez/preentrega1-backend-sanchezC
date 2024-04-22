@@ -1,4 +1,4 @@
-const TicketModel =require("../dao/models/ticket.model.js")
+const TicketModel = require('../dao/models/ticket.model.js');
 
 class TicketRepository {
   async getTicketById(id) {

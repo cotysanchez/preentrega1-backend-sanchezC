@@ -22,11 +22,9 @@ class CartManager {
     }
   }
 
- 
   async guardarCarritos() {
     await fs.writeFileSync(this.path, JSON.stringify(this.carts, null, 2));
   }
-
 
   async crearCarrito() {
     const nuevoCarrito = {
@@ -40,7 +38,6 @@ class CartManager {
     return nuevoCarrito;
   }
 
-
   async getCarritoById(cartId) {
     try {
       const carrito = this.carts.find((c) => c.id === cartId);
@@ -53,7 +50,6 @@ class CartManager {
       throw error;
     }
   }
-
 
   async agregarProductoAlCarrito(cartId, productId, quantity = 1) {
     const carrito = await this.getCarritoById(cartId);

@@ -1,4 +1,4 @@
-const TicketModel= require("../models/ticket.model.js");
+const TicketModel = require('../models/ticket.model.js');
 
 class TicketManager {
   async getTicketById(id) {

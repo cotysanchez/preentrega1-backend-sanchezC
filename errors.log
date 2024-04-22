@@ -1,0 +1,114 @@
+http: GET en / - 22/4/2024
+    
+http: GET en /login - 22/4/2024
+    
+http: GET en /favicon.ico - 22/4/2024
+    
+http: POST en /api/sessions/login - 22/4/2024
+    
+http: GET en /products - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b966 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96b - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96c - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b966 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96b - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/purchase - 22/4/2024
+    
+http: GET en /finishPurchase/66182db3d55d74141ea9ef20/ticket/662679e63cde351b411f3ee0 - 22/4/2024
+    
+http: GET en / - 22/4/2024
+    
+http: GET en /login - 22/4/2024
+    
+http: GET en /favicon.ico - 22/4/2024
+    
+http: POST en /api/sessions/login - 22/4/2024
+    
+http: GET en /products - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96f - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96f - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: DELETE en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96f - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96a - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96a - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/purchase - 22/4/2024
+    
+http: GET en /finishPurchase/66182db3d55d74141ea9ef20/ticket/6626ad59bd37e9d87bac6441 - 22/4/2024
+    
+http: DELETE en /api/carts/ - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b96a - 22/4/2024
+    
+http: DELETE en /api/carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: GET en /products?page=2 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b972 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b973 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b974 - 22/4/2024
+    
+http: GET en /products?page=3 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/product/65c56c96bfa69feec5ee0483 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: DELETE en /api/carts/66182db3d55d74141ea9ef20/product/65bd6bf7865b4d4cf440b972 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: PUT en /api/carts/66182db3d55d74141ea9ef20/product/65c56c96bfa69feec5ee0483 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: POST en /api/carts/66182db3d55d74141ea9ef20/purchase - 22/4/2024
+    
+http: GET en /finishPurchase/66182db3d55d74141ea9ef20/ticket/6626adc8bd37e9d87bac6492 - 22/4/2024
+    
+http: GET en /carts/66182db3d55d74141ea9ef20 - 22/4/2024
+    
+http: GET en /api/sessions/logout - 22/4/2024
+    
+http: GET en /login - 22/4/2024
+    
+http: POST en /api/sessions/login - 22/4/2024
+    
+http: GET en /products - 22/4/2024
+    
+http: GET en /api/sessions/logout - 22/4/2024
+    
+http: GET en /login - 22/4/2024
+    

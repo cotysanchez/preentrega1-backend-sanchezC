@@ -13,6 +13,7 @@ const configObject = {
   ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+  node_env: process.env.NODE_ENV
 };
 
 module.exports = configObject;

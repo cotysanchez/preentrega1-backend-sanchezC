@@ -87,7 +87,7 @@ class ProductManager {
         console.log('Producto no encontrado');
         return null;
       } else {
-        console.log('Producto encontrado');
+        console.logoducto encontrado');
         return buscado;
       }
     } catch (error) {
@@ -112,8 +112,6 @@ class ProductManager {
       console.log('Error al Guardar el Archivo', error);
     }
   }
-
-
 
   async updateProduct(id, productoActualizado) {
     try {
@@ -154,7 +152,7 @@ class ProductManager {
         console.log('No se encontro el producto');
       }
     } catch (error) {
-      console.log('Error al Actualizar el Producto', error);
+      console.logror al Actualizar el Producto', error);
     }
   }
 

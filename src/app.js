@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 8081;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const productsRouter = require('./routes/products.router.js');
@@ -22,6 +22,8 @@ const initializePassport= require("./config/passport.config.js");
 const authMiddleware = require('./middleware/authmiddleware.js');
 const mockingRouter = require("./routes/mocking.router.js");
 const errorHandler= require("./middleware/error.js");
+const loggerRouter=require("./routes/logger.router.js");
+const addLogger= require("./utils/logger.js");
 require('./database.js');
 
 // Handlebars
@@ -55,6 +57,7 @@ app.use(
   })
 );
 app.use(errorHandler);
+app.use(addLogger);
 
 //Routes
 app.use('/', viewsRouter);
@@ -63,6 +66,7 @@ app.use('/api/carts', cartsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/sessions", sessionRouter);
 app.use("/", mockingRouter);
+app.use('/loggertest', loggerRouter);
 
 //Passport
 initializePassport();

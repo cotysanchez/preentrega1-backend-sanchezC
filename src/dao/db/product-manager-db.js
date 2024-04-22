@@ -1,5 +1,4 @@
-
-const ProductModel = require("../models/product.model.js");
+const ProductModel = require('../models/product.model.js');
 
 class ProductManager {
   async addProduct({
@@ -12,15 +11,22 @@ class ProductManager {
     status,
     category,
   }) {
-
-    console.log("Intentando agergar un nuevo producto");
+    console.log('Intentando agergar un nuevo producto');
     try {
-      if (!title || !description || !price || !thumbnail || !code || !stock || !status || !category) {
+      if (
+        !title ||
+        !description ||
+        !price ||
+        !thumbnail ||
+        !code ||
+        !stock ||
+        !status ||
+        !category
+      ) {
         console.log('Todos los campos son obligatorios');
         return;
       }
 
-   
       const existProduct = await ProductModel.findOne({ code: code });
 
       if (existProduct) {
@@ -40,33 +46,35 @@ class ProductManager {
       });
 
       await newProduct.save();
-      console.log ("Product agregado exitosamente, newProduct");
+      console.log('Producto agregado exitosamente, newProduct');
     } catch (error) {
       console.log('Error al agregar producto', error);
       throw error;
     }
   }
 
-  
-  async getProducts({limit=10,page=1, sort,query}= {}) {
+  async getProducts({ limit = 10, page = 1, sort, query } = {}) {
     try {
-      const skip = (page - 1)*limit;
-      let queryOptions= {};
-      if(query){
-        queryOptions={category:query};
+      const skip = (page - 1) * limit;
+      let queryOptions = {};
+      if (query) {
+        queryOptions = { category: query };
       }
-      const sortOptions= {};
-      if (sort){
-        if (sort === "asc" || sort === "desc"){
-          sortOptions.price = sort === "asc" ? 1 : -1;
+      const sortOptions = {};
+      if (sort) {
+        if (sort === 'asc' || sort === 'desc') {
+          sortOptions.price = sort === 'asc' ? 1 : -1;
         }
       }
 
-      const products = await ProductModel.find(queryOptions).sort(sortOptions).skip(skip).limit(limit);
-      const totalProducts= await ProductModel.countDocuments(queryOptions);
-      const totalPages = Math.ceil(totalProducts/limit);
-      const hasPrevPage = page >1;
-      const hasNextPage = page< totalPages;
+      const products = await ProductModel.find(queryOptions)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(limit);
+      const totalProducts = await ProductModel.countDocuments(queryOptions);
+      const totalPages = Math.ceil(totalProducts / limit);
+      const hasPrevPage = page > 1;
+      const hasNextPage = page < totalPages;
 
       return {
         docs: products,
@@ -87,7 +95,6 @@ class ProductManager {
             }&sort=${sort}&query=${query}`
           : null,
       };
-      
     } catch (error) {
       console.log('Error al obtener los productos', error);
     }
@@ -143,5 +150,3 @@ class ProductManager {
 }
 
 module.exports = ProductManager;
-
-

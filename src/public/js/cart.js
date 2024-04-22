@@ -10,7 +10,7 @@ function deleteProduct(cartId, productId) {
       location.reload();
     })
     .catch((error) => {
-      console.error('Error:', error);
+      req.logger.error('Error:', error);
     });
 }
 
@@ -25,7 +25,7 @@ function emptyCart(cartId) {
       location.reload();
     })
     .catch((error) => {
-      console.error('Error:', error);
+      req.logger.error('Error:', error);
     });
 }
 

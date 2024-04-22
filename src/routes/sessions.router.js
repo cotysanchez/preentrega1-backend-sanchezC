@@ -1,29 +1,35 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const passport =require ("passport");
-const generateToken = require("../utils/jsonwebtoken.js");
+const passport = require('passport');
+const generateToken = require('../utils/jsonwebtoken.js');
 const SessionsController = require('../dao/controllers/sessions.controller.js');
 const sessionsController = new SessionsController();
-
 
 //Login con Passport
 router.post('/login', sessionsController.login);
 //Current
 router.get('/current', sessionsController.current);
-//Logout 
-router.get("/logout", sessionsController.logout);
-// Faillogin   
-router.get("/faillogin",sessionsController.faillogin);
+//Logout
+router.get('/logout', sessionsController.logout);
+// Faillogin
+router.get('/faillogin', sessionsController.faillogin);
 
-
-// GET - Para GitHub : 
-router.get("/github", passport.authenticate("github", {scope: ["user:email"]}), async (req, res) => {})
-router.get("/githubcallback", passport.authenticate("github", {failureRedirect: "/login"}), async (req, res) => {
-    //La estrategía de github nos retornará el usuario, entonces lo agregamos a nuestro objeto de session. 
-    req.session.user = req.user; 
-    req.session.login = true; 
-    res.redirect("/products");
-})
+// GET - Para GitHub :
+router.get(
+  '/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+  async (req, res) => {}
+);
+router.get(
+  '/githubcallback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  async (req, res) => {
+    //La estrategía de github nos retornará el usuario, entonces lo agregamos a nuestro objeto de session.
+    req.session.user = req.user;
+    req.session.login = true;
+    res.redirect('/products');
+  }
+);
 
 //POST - Login con JWT
 router.post('/login', async (req, res) => {
@@ -60,5 +66,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-    
 module.exports = router;

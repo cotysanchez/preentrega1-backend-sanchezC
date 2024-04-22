@@ -1,8 +1,8 @@
-const UserModel = require("../models/user.model.js");
-const CartModel = require("../models/cart.model.js");
-const jwt = require ("jsonwebtoken");
-const {createHash, isValidPassword} = require("../../utils/hashBcrypt.js");
-const UserDTO = require("../../dto/user.dto.js");
+const UserModel = require('../models/user.model.js');
+const CartModel = require('../models/cart.model.js');
+const jwt = require('jsonwebtoken');
+const { createHash, isValidPassword } = require('../../utils/hashBcrypt.js');
+const UserDTO = require('../../dto/user.dto.js');
 
 class UserController {
   async register(req, res) {
@@ -98,4 +98,3 @@ class UserController {
 }
 
 module.exports = UserController;
-

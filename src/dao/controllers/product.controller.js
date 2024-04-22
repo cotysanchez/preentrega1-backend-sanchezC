@@ -1,7 +1,6 @@
 const ProductRepository = require('../../repository/productRepository.js');
 const productRepository = new ProductRepository();
 
-
 class ProductController {
   async getProducts(req, res) {
     try {
@@ -83,11 +82,10 @@ class ProductController {
       await productRepository.deleteProduct(productId);
       res.json({ message: 'Producto eliminado exitosamente' });
     } catch (error) {
-      console.error(error);
+      console.error(Error);
       res.status(500).json({ message: 'Error al eliminar el producto' });
     }
   }
-
 }
 
 module.exports = ProductController;
