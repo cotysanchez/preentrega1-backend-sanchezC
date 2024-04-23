@@ -29,7 +29,7 @@ const loggerProduction = winston.createLogger({
     new winston.transports.File({
       filename: './errors.log',
       level: 'info',
-      
+      format: winston.format.simple(),
     }),
   ],
 });
@@ -39,6 +39,10 @@ const loggerDesarrollo = winston.createLogger({
   transports: [
     new winston.transports.Console({
       level: 'debug',
+       format: winston.format.combine(
+                    winston.format.colorize({colors: levels.colors}),
+                    winston.format.simple()
+       )
       
     }),
   ],
@@ -47,7 +51,7 @@ const loggerDesarrollo = winston.createLogger({
 
 const logger = node_env === "production" ? loggerProduction : loggerDesarrollo;
 
-
+//Middleware
 const addLogger = (req, res, next) => {
   req.logger = logger;
   req.logger.http(`${req.method} en ${

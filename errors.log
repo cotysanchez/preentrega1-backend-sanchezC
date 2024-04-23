@@ -112,3 +112,4 @@ http: GET en /api/sessions/logout - 22/4/2024
     
 http: GET en /login - 22/4/2024
     
+{"level":"error","message":"Error fatal"}

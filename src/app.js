@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 8081;
+const PORT = 8080;
 const path = require('path');
 const exphbs = require('express-handlebars');
 const productsRouter = require('./routes/products.router.js');
@@ -106,4 +106,26 @@ app.get ("/user",(req,res)=>{
     return res.send(`El usuario registrado es: ${req.session.user}`);
   }
   res.send("No tenemos un usuario registrado");
+});
+
+
+
+app.get('/operacionsimple', (req, res) => {
+  let suma = 0;
+
+  for (let i = 0; i < 1000000; i++) {
+    suma += i;
+  }
+
+  res.send({ suma });
+});
+
+app.get('/operacioncompleja', (req, res) => {
+  let suma = 0;
+
+  for (let i = 0; i < 5e8; i++) {
+    suma += i;
+  }
+
+  res.send({ suma });
 });
