@@ -101,18 +101,25 @@ class ProductRepository {
     }
   }
 
-  async getProductById(id) {
+  async getProductById(req, id) {
     try {
-      const product = await ProductModel.findById(id);
+      const product = await ProductModel.findById(req, id);
       if (!product) {
-        console.log('Producto no encontradooo', id);
+        if (req && req.logger) {
+          console.log('Producto no encontradooo', id);
+        }
         return null;
       }
+      if (req && req.logger) {
+        console.log('Producto encontrado Exitosamente', product);
+      }
 
-      console.log('Producto encontrado Exitosamente', product);
       return product;
     } catch (error) {
-      console.log('Error al encontrar producto por ID ', error);
+      if (req && req.logger) {
+        console.error('Error al encontrar producto por ID ', error);
+      }
+      throw error;
     }
   }
 

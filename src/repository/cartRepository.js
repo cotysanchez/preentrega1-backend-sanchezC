@@ -93,7 +93,7 @@ class CartRepository {
     }
   }
 
-  async updateQuantityProduct(cartId, productId, newQuantity) {
+  async updateQuantityProduct( cartId, productId, newQuantity) {
     try {
       const cart = await CartModel.findById(cartId);
       if (!cart) {
@@ -117,9 +117,11 @@ class CartRepository {
         'Error al actualizar la cantidad del producto en el Carrito',
         error
       );
-      throw error;
     }
+
+    throw error;
   }
+
   async emptyCart(cartId) {
     try {
       const cart = await CartModel.findByIdAndUpdate(
