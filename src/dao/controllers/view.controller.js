@@ -30,7 +30,7 @@ class ViewsController {
       });
 
       const cartId = req.user.cart.toString();
-      //console.log(cartId);
+      //req.logger.info(cartId);
 
       res.render('products', {
         products: newArray,
@@ -43,7 +43,7 @@ class ViewsController {
         cartId,
       });
     } catch (error) {
-      console.error('Error al obtener productos', error);
+      req.logger.error('Error al obtener productos', error);
       res.status(500).json({
         status: 'error',
         error: 'Error interno del servidor',
@@ -57,7 +57,7 @@ class ViewsController {
       const cart = await cartRepository.getCartById(cartId);
 
       if (!cart) {
-        console.log('No existe ese carrito con el id');
+        req.logger.info('No existe ese carrito con el id');
         return res.status(404).json({ error: 'Carrito no encontrado' });
       }
 
@@ -79,7 +79,7 @@ class ViewsController {
 
       res.render('carts', { products: productsInCart, totalBuy, cartId });
     } catch (error) {
-      console.error('Error al obtener el carrito', error);
+      req.logger.error('Error al obtener el carrito', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }
@@ -93,7 +93,7 @@ class ViewsController {
         res.render('login', { products: productos });
       }
     } catch (error) {
-      console.log('Error al obtener productos:', error);
+      req.logger.info('Error al obtener productos:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }
@@ -121,7 +121,7 @@ class ViewsController {
       });
 
       if (!products.docs) {
-        console.log(
+        req.logger.info(
           'Error: No se encontraron documentos en los productos obtenidos'
         );
         return res.status(500).json({ error: 'Error interno del servidor' });
@@ -151,7 +151,7 @@ class ViewsController {
         cartLength: cart ? cartunico.products.length : false,
       });
     } catch (error) {
-      console.log('Error al obtener productos:', error);
+      req.logger.info('Error al obtener productos:', error);
       res
         .status(500)
         .json({ status: 'error', error: 'Error interno del servidor' });
@@ -159,9 +159,9 @@ class ViewsController {
   }
   async renderPurchase(req, res) {
     try {
-      console.log('*** RENDER PURCHASE');
-      console.log('** req.params.cid:' + req.params.cid);
-      console.log('** req.params.tid:' + req.params.tid);
+      req.logger.info('*** RENDER PURCHASE');
+      req.logger.info('** req.params.cid:' + req.params.cid);
+      req.logger.info('** req.params.tid:' + req.params.tid);
       const cart = await cartRepository.getCartById(req.params.cid);
       const ticket = await ticketRepository.getTicketById(req.params.tid);
       const purchaser = await UserModel.findById(ticket.purchaser);
@@ -184,7 +184,7 @@ class ViewsController {
         hasTicket,
       });
     } catch (error) {
-      console.error('Error al renderizar finalizar compra:', error);
+      req.logger.error('Error al renderizar finalizar compra:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }

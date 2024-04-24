@@ -14,7 +14,7 @@ class ProductManager {
       const data = await fs.readFileSync(this.path, 'utf-8');
       this.products = JSON.parse(data);
     } catch (error) {
-      console.error('Error al cargar productos:', error.message);
+      req.logger.error('Error al cargar productos:', error.message);
     }
   }
 
@@ -40,12 +40,12 @@ class ProductManager {
       !status ||
       !category
     ) {
-      console.log(' Todos los campos son Obligatorios');
+      req.logger.info(' Todos los campos son Obligatorios');
       return;
     }
 
     if (this.products.some((item) => item.code === code)) {
-      console.log('El codigo debe ser unico');
+      req.logger.info('El codigo debe ser unico');
       return;
     }
 
@@ -84,14 +84,14 @@ class ProductManager {
       const buscado = arrayProductos.find((item) => item.id === id);
 
       if (!buscado) {
-        console.log('Producto no encontrado');
+        req.logger.info('Producto no encontrado');
         return null;
       } else {
-        console.logoducto encontrado');
+        req.logger.infooducto encontrado');
         return buscado;
       }
     } catch (error) {
-      console.log('Error al leer el archivo', error);
+      req.logger.info('Error al leer el archivo', error);
     }
   }
 
@@ -101,7 +101,7 @@ class ProductManager {
       const arrayProductos = JSON.parse(respuesta);
       return arrayProductos;
     } catch (error) {
-      console.log('Error al leer un Archivo', error);
+      req.logger.info('Error al leer un Archivo', error);
     }
   }
 
@@ -109,7 +109,7 @@ class ProductManager {
     try {
       fs.writeFileSync(this.path, JSON.stringify(arrayProductos, null, 2));
     } catch (eror) {
-      console.log('Error al Guardar el Archivo', error);
+      req.logger.info('Error al Guardar el Archivo', error);
     }
   }
 
@@ -149,10 +149,10 @@ class ProductManager {
         arrayProductos[index] = actualizacionProduct;
         await this.guardarArchivo(arrayProductos);
       } else {
-        console.log('No se encontro el producto');
+        req.logger.info('No se encontro el producto');
       }
     } catch (error) {
-      console.logror al Actualizar el Producto', error);
+      req.logger.inforor al Actualizar el Producto', error);
     }
   }
 
@@ -162,7 +162,7 @@ class ProductManager {
       const newArray = arrayProductos.filter((item) => item.id !== id);
       await this.guardarArchivo(newArray);
     } catch (error) {
-      console.log('Error al borrar el Producto', error);
+      req.logger.info('Error al borrar el Producto', error);
     }
   }
 

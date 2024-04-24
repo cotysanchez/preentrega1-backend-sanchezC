@@ -29,7 +29,7 @@ class ProductController {
           : null,
       });
     } catch (error) {
-      console.log('Error al obtener productos:', error);
+      req.logger.info('Error al obtener productos:', error);
       res
         .status(500)
         .json({ status: 'error', error: 'Error interno del servidor' });
@@ -42,7 +42,7 @@ class ProductController {
       await productRepository.addProduct(newProduct);
       res.status(201).json({ message: 'Producto agregado exitosamente' });
     } catch (error) {
-      console.error(error);
+      req.logger.error(error);
       res.status(500).json({ message: 'Error al agregar el producto' });
     }
   }
@@ -57,7 +57,7 @@ class ProductController {
         res.status(404).json({ error: 'Producto no encontrado!' });
       }
     } catch (error) {
-      console.error('Error al obtener producto por ID:', error);
+      req.logger.error('Error al obtener producto por ID:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }
@@ -70,7 +70,7 @@ class ProductController {
       await productRepository.updateProduct(productId, productUpdate);
       res.json({ message: 'Producto Actualizado Exitosamente' });
     } catch (error) {
-      console.error(error);
+      req.logger.error(error);
       res.status(500).json({ message: 'Error al actualizar el producto' });
     }
   }
@@ -82,7 +82,7 @@ class ProductController {
       await productRepository.deleteProduct(productId);
       res.json({ message: 'Producto eliminado exitosamente' });
     } catch (error) {
-      console.error(Error);
+      req.logger.error(Error);
       res.status(500).json({ message: 'Error al eliminar el producto' });
     }
   }

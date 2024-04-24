@@ -7,7 +7,7 @@ class CartRepository {
       await newCart.save();
       return newCart;
     } catch (error) {
-      console.log('Error al crear el Carrito de Compras');
+      req.logger.info('Error al crear el Carrito de Compras');
     }
   }
 
@@ -15,12 +15,12 @@ class CartRepository {
     try {
       const cart = await CartModel.findById(cartId);
       if (!cart) {
-        console.log('No existe el Carrito con ese ID');
+        req.logger.info('No existe el Carrito con ese ID');
         return null;
       }
       return cart;
     } catch (error) {
-      console.log('Error al traer el Carrito', error);
+      req.logger.info('Error al traer el Carrito', error);
     }
   }
 
@@ -47,7 +47,7 @@ class CartRepository {
       await cart.save();
       return cart;
     } catch (error) {
-      console.log('Error al agregar un prodcuto al carrito', error);
+      req.logger.info('Error al agregar un prodcuto al carrito', error);
     }
   }
 
@@ -58,7 +58,7 @@ class CartRepository {
       if (!cart) {
         throw new Error('Carrito no encontrado');
       }
-      console.log(cartId);
+      req.logger.info(cartId);
       cart.products = cart.products.filter(
         (item) => item.product._id.toString() !== productId
       );
@@ -67,7 +67,7 @@ class CartRepository {
 
       return cart;
     } catch (error) {
-      console.error(
+      req.logger.error(
         'Error al eliminar el producto del carrito en el gestor',
         error
       );
@@ -88,12 +88,12 @@ class CartRepository {
       await cart.save();
       return cart;
     } catch (error) {
-      console.error('Error al actualizar el carrito', error);
+      req.logger.error('Error al actualizar el carrito', error);
       throw error;
     }
   }
 
-  async updateQuantityProduct( cartId, productId, newQuantity) {
+  async updateQuantityProduct(cartId, productId, newQuantity) {
     try {
       const cart = await CartModel.findById(cartId);
       if (!cart) {
@@ -104,7 +104,7 @@ class CartRepository {
       );
       if (productIndex !== -1) {
         cart.products[productIndex].quantity = newQuantity;
-        console.log(cart.products[productIndex].quantity);
+        req.logger.info(cart.products[productIndex].quantity);
 
         cart.markModified('products');
         await cart.save();
@@ -113,7 +113,7 @@ class CartRepository {
         throw new Error('Producto no encontrado en el Carrito');
       }
     } catch (error) {
-      console.error(
+      req.logger.error(
         'Error al actualizar la cantidad del producto en el Carrito',
         error
       );
@@ -134,7 +134,7 @@ class CartRepository {
       }
       return cart;
     } catch (error) {
-      console.error('Error al vaciar el carrito en el gestor', error);
+      req.logger.error('Error al vaciar el carrito en el gestor', error);
       throw error;
     }
   }

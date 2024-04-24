@@ -59,7 +59,7 @@ router.post('/login', async (req, res) => {
 
     res.send({ status: 'success', token });
   } catch (error) {
-    console.log('Error en al autenticación', error);
+    req.logger.info('Error en al autenticación', error);
     res
       .status(500)
       .send({ status: 'error', message: 'Error interno del servidor' });

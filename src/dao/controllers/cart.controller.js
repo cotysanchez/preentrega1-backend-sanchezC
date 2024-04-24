@@ -16,7 +16,7 @@ class CartController {
       const newCart = await cartRepository.createCart();
       res.json(newCart);
     } catch (error) {
-      console.error('Error al crear un Nuevo Carrito', error);
+      req.logger.error('Error al crear un Nuevo Carrito', error);
       res.status(500).json({ error: 'Error Interno del Servidor' });
     }
   }
@@ -27,13 +27,13 @@ class CartController {
     try {
       const cart = await cartRepository.findById(cartId);
       if (!cart) {
-        console.log('No existe el Carrito con ese ID');
+        req.logger.info('No existe el Carrito con ese ID');
         return res.status(404).json({ error: 'Carrito no encontrado' });
       }
 
       return res.json(cart.products);
     } catch (error) {
-      console.error('Error al obtener el Carrito', error);
+      req.logger.error('Error al obtener el Carrito', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }
@@ -51,7 +51,7 @@ class CartController {
       );
       res.json(updateCart.products);
     } catch (error) {
-      console.error('Error  al agregar producto al Carrito', error);
+      req.logger.error('Error  al agregar producto al Carrito', error);
       res.status(500).json({ error: 'Error del Servidor' });
     }
   }
@@ -71,7 +71,7 @@ class CartController {
         updatedCart,
       });
     } catch (error) {
-      console.error('Error al eliminar el producto del carrito', error);
+      req.logger.error('Error al eliminar el producto del carrito', error);
       res.status(500).json({
         status: 'error',
         error: 'Error interno del servidor',
@@ -90,7 +90,7 @@ class CartController {
       );
       res.json(updatedCart);
     } catch (error) {
-      console.error('Error al acutualizar el Carrito', error);
+      req.logger.error('Error al acutualizar el Carrito', error);
       res.status(500).json({
         status: 'error',
         error: 'Error Interno del Servidor',
@@ -115,7 +115,7 @@ class CartController {
         updatedCart,
       });
     } catch (error) {
-      console.error(
+      req.logger.error(
         'Error al actualizar la cantidad del prducto en el Carrito',
         error
       );
@@ -137,7 +137,7 @@ class CartController {
         updatedCart,
       });
     } catch (error) {
-      console.error('Error al vaciar el carrito', error);
+      req.logger.error('Error al vaciar el carrito', error);
       res.status(500).json({
         status: 'error',
         error: 'Error interno del servidor',
@@ -152,7 +152,7 @@ class CartController {
       const cart = await cartRepository.getCartById(cartId);
 
       if (!cart) {
-        console.log(' No existe el carrito con este ID');
+        req.logger.info(' No existe el carrito con este ID');
         return res.status(404).json({ error: 'Carrito no encontrado' });
       }
 
@@ -162,7 +162,7 @@ class CartController {
       }));
       res.render('carts', { products: productsInCart });
     } catch (error) {
-      console.error('Error al obtener el Carrito', error);
+      req.logger.error('Error al obtener el Carrito', error);
       res.status(500).json({ error: 'Error interno del Servidor' });
     }
   }
@@ -212,7 +212,7 @@ class CartController {
 
       res.status(200).json({ cartId: cart._id, ticketId: ticket._id }); // aca iba productsNotAvailable;
     } catch (error) {
-      console.error('Error al procesar la compra:', error);
+      req.logger.error('Error al procesar la compra:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   }
