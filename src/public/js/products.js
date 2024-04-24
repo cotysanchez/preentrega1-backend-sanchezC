@@ -7,7 +7,7 @@ document.querySelectorAll('#btnSend').forEach((button) => {
 });
 
 const addProductToCart = (value) => {
-  req.logger.info(value);
+  console.log(value);
 
   fetch(`/api/${value}`, {
     method: 'POST',

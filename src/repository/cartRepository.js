@@ -24,7 +24,7 @@ class CartRepository {
     }
   }
 
-  async addProductToCart(cartId, productId, quantity = 1) {
+  async addProductToCart(req,cartId, productId, quantity = 1) {
     try {
       const cart = await this.getCartById(cartId);
 
@@ -51,7 +51,7 @@ class CartRepository {
     }
   }
 
-  async deleteProductToCart(cartId, productId) {
+  async deleteProductToCart(req ,cartId, productId) {
     try {
       const cart = await CartModel.findById(cartId);
 
@@ -93,7 +93,7 @@ class CartRepository {
     }
   }
 
-  async updateQuantityProduct(cartId, productId, newQuantity) {
+  async updateQuantityProduct(req ,cartId, productId, newQuantity) {
     try {
       const cart = await CartModel.findById(cartId);
       if (!cart) {
@@ -113,6 +113,7 @@ class CartRepository {
         throw new Error('Producto no encontrado en el Carrito');
       }
     } catch (error) {
+    
       req.logger.error(
         'Error al actualizar la cantidad del producto en el Carrito',
         error

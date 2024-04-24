@@ -11,7 +11,7 @@ class SocketManager {
 
   async initSocketEvents() {
     this.io.on('connection', async (socket) => {
-      req.logger.info('Un cliente se conectó');
+      console.log('Un cliente se conectó');
 
       socket.emit('products', await productRepository.getProducts());
 

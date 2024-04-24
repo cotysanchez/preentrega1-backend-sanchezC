@@ -45,6 +45,7 @@ class CartController {
 
     try {
       const updateCart = await cartRepository.addProductToCart(
+        req,
         cartId,
         productId,
         quantity
@@ -61,6 +62,7 @@ class CartController {
       const cartId = req.params.cid;
       const productId = req.params.pid;
       const updatedCart = await cartRepository.deleteProductToCart(
+        req,
         cartId,
         productId
       );
@@ -105,6 +107,7 @@ class CartController {
       const newQuantity = parseInt(req.body.quantity);
 
       const updatedCart = await cartRepository.updateQuantityProduct(
+        req,
         cartId,
         productId,
         newQuantity
