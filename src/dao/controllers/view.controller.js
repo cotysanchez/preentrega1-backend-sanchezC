@@ -12,18 +12,12 @@ class ViewsController {
   async renderProducts(req, res) {
     try {
       const { page = 1, limit = 3 } = req.query;
-
       const skip = (page - 1) * limit;
-
       const products = await ProductModel.find().skip(skip).limit(limit);
-
       const totalProducts = await ProductModel.countDocuments();
-
       const totalPages = Math.ceil(totalProducts / limit);
-
       const hasPrevPage = page > 1;
       const hasNextPage = page < totalPages;
-
       const newArray = products.map((product) => {
         const { _id, ...rest } = product.toObject();
         return { id: _id, ...rest };

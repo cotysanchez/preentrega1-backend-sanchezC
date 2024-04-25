@@ -9,9 +9,14 @@ const adminPassword = process.env.ADMIN_PASSWORD;
 class SessionsController {
   async login(req, res) {
     const { email, password } = req.body;
+
+    console.log('Email y contraseña recibidos:', email, password);
    
 
     if (email === adminEmail && password === adminPassword) {
+      console.log('Admin Email:', adminEmail);
+      console.log('Admin Password:', adminPassword);
+
       const usuario = {
         first_name: 'Admin',
         last_name: 'Admin',
@@ -38,7 +43,7 @@ class SessionsController {
       if (!user) {
         return res
           .status(400)
-          .send({ status: 'error', message: 'Usuario no encontrado' });
+          .send({ status: 'error', message: "Usuario no encontrado" });
       }
 
       const isValid = await isValidPassword(password, user);

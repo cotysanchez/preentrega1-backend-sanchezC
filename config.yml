@@ -12,7 +12,7 @@ scenarios:
       - get:
           url: /api/users 
           capture:
-            - json: "$.usuario"
+            - json: "$.user"
               as: "usuario"
             - json: "$.password"
               as: "password"

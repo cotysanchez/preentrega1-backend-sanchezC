@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const UserModel = require("../dao/models/user.model.js");
 const generateToken = require('../utils/jsonwebtoken.js');
 const SessionsController = require('../dao/controllers/sessions.controller.js');
 const sessionsController = new SessionsController();
@@ -30,7 +31,7 @@ router.get(
     res.redirect('/products');
   }
 );
-
+/*
 //POST - Login con JWT
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -65,5 +66,5 @@ router.post('/login', async (req, res) => {
       .send({ status: 'error', message: 'Error interno del servidor' });
   }
 });
-
+*/
 module.exports = router;
