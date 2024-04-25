@@ -2,8 +2,8 @@ const UserModel = require("../models/user.model.js");
 const {isValidPassword} = require("../../utils/hashBcrypt.js");
 const jwt = require("jsonwebtoken");
 require ("dotenv").config();
-const adminEmail = process.env.ADMIN_EMAIL;
-const adminPassword = process.env.ADMIN_PASSWORD;
+//const adminEmail = process.env.ADMIN_EMAIL;
+//const adminPassword = process.env.ADMIN_PASSWORD;
 
 
 class SessionsController {
@@ -12,11 +12,10 @@ class SessionsController {
 
     console.log('Email y contraseña recibidos:', email, password);
    
+    //console.log('Admin Email:', adminEmail);
+    //console.log('Admin Password:', adminPassword);
 
-    if (email === adminEmail && password === adminPassword) {
-      console.log('Admin Email:', adminEmail);
-      console.log('Admin Password:', adminPassword);
-
+    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
       const usuario = {
         first_name: 'Admin',
         last_name: 'Admin',
@@ -43,7 +42,7 @@ class SessionsController {
       if (!user) {
         return res
           .status(400)
-          .send({ status: 'error', message: "Usuario no encontrado" });
+          .send({ status: 'error', message: 'Usuario no encontrado' });
       }
 
       const isValid = await isValidPassword(password, user);
