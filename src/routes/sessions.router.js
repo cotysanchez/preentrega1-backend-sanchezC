@@ -31,7 +31,7 @@ router.get(
     res.redirect('/products');
   }
 );
-/*
+
 //POST - Login con JWT
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -66,5 +66,5 @@ router.post('/login', async (req, res) => {
       .send({ status: 'error', message: 'Error interno del servidor' });
   }
 });
-*/
+
 module.exports = router;
