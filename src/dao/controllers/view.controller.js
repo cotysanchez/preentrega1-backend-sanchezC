@@ -108,7 +108,7 @@ class ViewsController {
   //GET - mostrar productos en /products
   async Products(req, res) {
     try {
-      const { page = 1, limit = 10 } = req.query;
+      const { page = 1, limit = 12 } = req.query;
       const products = await productRepository.getProducts({
         page: parseInt(page),
         limit: parseInt(limit),

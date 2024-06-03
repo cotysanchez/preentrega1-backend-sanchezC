@@ -1,9 +1,12 @@
 {{#if hasTicket}}
+
     <h2>Ticket de Compra</h2>
+    
     <h4>Comprador:</h4>
     <p>{{purchaser.first_name}} {{purchaser.last_name}}</p>
     <p>{{purchaser.email}}</p>
     <h4>Código: {{ticket.code}}</h4>
     <h4>Fecha Emisión: {{ticket.purchase_datetime}}</h4>
     <h4>Total Compra: {{ticket.amount}}</h4>
+    
 {{/if}}

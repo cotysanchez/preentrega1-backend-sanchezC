@@ -24,6 +24,7 @@ const mockingRouter = require("./routes/mocking.router.js");
 const errorHandler= require("./middleware/error.js");
 const loggerRouter=require("./routes/logger.router.js");
 const addLogger= require("./utils/logger.js");
+const cors= require("cors");
 require('./database.js');
 
 // Handlebars
@@ -58,6 +59,7 @@ app.use(
 );
 app.use(errorHandler);
 app.use(addLogger);
+app.use(cors());
 
 //Routes
 app.use('/', viewsRouter);

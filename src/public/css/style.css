@@ -65,6 +65,8 @@ p {
 
 
 
+
+
 /* Estilos adicionales al pasar el mouse sobre la tarjeta  */
 .card:hover {
   transform: scale(1.05);

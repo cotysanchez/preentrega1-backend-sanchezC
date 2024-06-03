@@ -40,4 +40,11 @@ router.get("/profile", viewsController.profile);
 
 router.get("/finishPurchase/:cid/ticket/:tid", viewsController.renderPurchase);
 
+
+
+
+
+
+
+
 module.exports = router;
